@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <what3words>
+            <frontend>
+                <placeholder>e.g. lock.spout.radar</placeholder>
+                <count>3</count>
+                <delay>500</delay>
+            </frontend>
+        </what3words>
+    </default>
+</config>

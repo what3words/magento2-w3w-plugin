@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="what3words" translate="label" sortOrder="120">
+            <label>what3words</label>
+        </tab>
+        <section id="what3words" translate="label" type="text" sortOrder="100" showInDefault="1" showInStore="1" showInWebsite="1">
+            <label>what3words</label>
+            <tab>what3words</tab>
+            <resource>What3Words_What3Words::what3words</resource>
+            <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Enabled?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_key" translate="label" type="obscure" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>API Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="allowed_countries" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Allowed Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+            </group>
+            <group id="frontend" translate="label" type="text" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
+                <label>Frontend</label>
+                <field id="delay" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Auto-suggest Delay</label>
+                </field>
+                <field id="placeholder" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Input Placeholder</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
