@@ -1,5 +1,5 @@
 # what3words Magento 2 Extension
-v.1.0 Updated 01/12/17
+v.1.0.1 Updated 01/07/19
 
 ## Configuration
 * Found under 'what3words' in Store Configuration
