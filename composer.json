@@ -2,7 +2,6 @@
   "name": "what3words/module-what3words",
   "description": "What3Words Magento 2 Module",
   "type": "magento2-module",
-  "version": "1.0",
   "require": {
     "what3words/w3w-php-wrapper": "^2.2"
   },
