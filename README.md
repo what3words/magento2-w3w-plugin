@@ -1,5 +1,15 @@
-# what3words Magento 2 Extension
-v.1.0.1 Updated 01/07/19
+## Installation
+To install follow the instructions on https://developer.what3words.com/tools/e-commerce/magento.
+
+The Magento 2 Extension can be installed using Packagist or alternatively installed manually by downloading from Github and adding to your server via FTP or by performing a manual extension installation.
+
+We recommend using Composer and Packagist to install the Extension to ensure that all dependencies are installed along with the Extension.
+
+To add the what3words Magento 2 Extension to a store using Packagist, first connect to your server and start the command line interface.
+
+From the CLI run the command 'composer require what3words/module-what3words' to install the files and dependencies required by the extension.
+
+Next, run 'php bin/magento setup:upgrade' to compile the site to ensure it includes the new extension We then recommend running 'php bin/magento cache:clean' and 'php bin/magento cache:flush' to ensure the site’s cache is cleared.
 
 ## Configuration
 * Found under 'what3words' in Store Configuration
