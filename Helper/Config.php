@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * What3Words_What3Words
+ *
+ * @category    WorkInProgress
+ * @copyright   Copyright (c) 2020 What3Words
+ * @author      Vlad Patru <vlad@wearewip.com>
+ * @link        http://www.what3words.com
+ */
 namespace What3Words\What3Words\Helper;
 
 use \Magento\Framework\App\Helper\AbstractHelper;
@@ -8,14 +15,13 @@ use \Magento\Framework\Encryption\EncryptorInterface;
 
 /**
  * Class Config
- * @package What3Words\What3Words\Helper
- * @author Vicki Tingle
+ * Helper to return admin settings values
  */
 class Config extends AbstractHelper
 {
     const PREFIX = 'what3words/';
 
-    /** @var EncryptorInterface  */
+    /** @var EncryptorInterface */
     protected $encryptor;
 
     /**
@@ -60,15 +66,7 @@ class Config extends AbstractHelper
     /**
      * @return string
      */
-    public function getAllowedCountries()
-    {
-        return $this->getConfig('general/allowed_countries');
-    }
-
-    /**
-     * @return string
-     */
-    public function getPlaceHolder()
+    public function getPlaceholder()
     {
         return $this->getConfig('frontend/placeholder');
     }
@@ -76,8 +74,8 @@ class Config extends AbstractHelper
     /**
      * @return string
      */
-    public function getTypeaheadDelay()
+    public function getIconColor()
     {
-        return $this->getConfig('frontend/delay');
+        return $this->getConfig('frontend/icon_color');
     }
 }

@@ -4,8 +4,7 @@
         <what3words>
             <frontend>
                 <placeholder>e.g. lock.spout.radar</placeholder>
-                <count>3</count>
-                <delay>500</delay>
+                <icon_color>#e11f26</icon_color>
             </frontend>
         </what3words>
     </default>

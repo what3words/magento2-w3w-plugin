@@ -18,18 +18,15 @@
                     <label>API Key</label>
                     <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
                 </field>
-                <field id="allowed_countries" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Allowed Countries</label>
-                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
-                </field>
             </group>
             <group id="frontend" translate="label" type="text" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
                 <label>Frontend</label>
-                <field id="delay" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Auto-suggest Delay</label>
+                <field id="placeholder" translate="label" type="text" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Placeholder text</label>
                 </field>
-                <field id="placeholder" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>Input Placeholder</label>
+                <field id="icon_color" translate="label" type="text" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>/// icon colour</label>
+                    <frontend_model>What3Words\What3Words\Block\ColorPicker</frontend_model>
                 </field>
             </group>
         </section>

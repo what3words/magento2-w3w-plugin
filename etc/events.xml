@@ -1,16 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <!-- Save a three word address on order placement -->
     <event name="sales_model_service_quote_submit_success">
-        <observer name="what3words_order_save" instance="What3Words\What3Words\Observer\SaveToOrderTableObserver"/>
+        <observer name="custome_address_attribute_save" instance="What3Words\What3Words\Observer\SaveInOrder"/>
     </event>
-
-    <!-- Save a three word address in the customer account area -->
-    <event name="customer_address_save_after">
-        <observer name="what3words_address_save" instance="What3Words\What3Words\Observer\SaveToCustomerObserver"/>
-    </event>
-
-    <!-- Update an order address -->
     <event name="admin_sales_order_address_update">
         <observer name="save_order_address" instance="What3Words\What3Words\Observer\SaveOrderAddress" />
     </event>

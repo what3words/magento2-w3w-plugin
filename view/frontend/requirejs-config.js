@@ -1,18 +1,35 @@
 var config = {
-    paths: {
-        'jquery-typeahead': 'What3Words_What3Words/js/resource/magento.jquery.typeahead'
-    },
-    map : {
-        '*' : {
-            autoSuggestPlugin: 'What3Words_What3Words/js/resource/magento.jquery.w3w-autosuggest-plugin',
-            'Magento_Checkout/model/shipping-save-processor': 'What3Words_What3Words/js/model/default',
-            "Magento_Checkout/template/shipping-address/address-renderer/default.html":
-                "What3Words_What3Words/template/checkout/address.html"
+    config: {
+        mixins: {
+            'Magento_Checkout/js/action/set-billing-address': {
+                'What3Words_What3Words/js/action/set-billing-address-mixin': true
+            },
+            'Magento_Checkout/js/action/set-shipping-information': {
+                'What3Words_What3Words/js/action/set-shipping-information-mixin': true
+            },
+            'Magento_Checkout/js/action/create-shipping-address': {
+                'What3Words_What3Words/js/action/create-shipping-address-mixin': true
+            },
+            'Magento_Checkout/js/action/place-order': {
+                'What3Words_What3Words/js/action/set-billing-address-mixin': true
+            },
+            'Magento_Checkout/js/action/create-billing-address': {
+                'What3Words_What3Words/js/action/set-billing-address-mixin': true
+            },
+            'Magento_Checkout/js/model/shipping-save-processor/payload-extender': {
+                'What3Words_What3Words/js/model/payload-extender': true
+            },
+            'mage/validation': {
+                'What3Words_What3Words/js/w3wValidation': true
+            },
+            'Magento_Ui/js/lib/validation/rules': {
+                'What3Words_What3Words/js/ui-w3wValidation': true
+            }
         }
     },
-    shim: {
-        'jquery-typeahead': {
-            deps: ['jquery']
+    map: {
+        '*': {
+            w3wAutocomplete: 'What3Words_What3Words/js/widget/w3wAutosuggest'
         }
     }
 };

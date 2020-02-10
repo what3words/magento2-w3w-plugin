@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:DataObject/etc/fieldset.xsd">
+    <scope id="global">
+        <fieldset id="customer_address">
+            <field name="w3w">
+                <aspect name="to_quote_address" />
+            </field>
+        </fieldset>
+        <fieldset id="sales_copy_order_billing_address">
+            <field name="w3w">
+                <aspect name="to_order" />
+            </field>
+        </fieldset>
+        <fieldset id="sales_convert_quote_address">
+            <field name="w3w">
+                <aspect name="to_order_address" />
+            </field>
+        </fieldset>
+        <fieldset id="quote_convert_item">
+            <field name="w3w">
+                <aspect name="to_quote_address" />
+            </field>
+        </fieldset>
+        <fieldset id="sales_copy_order_shipping_address">
+            <field name="w3w">
+                <aspect name="to_order" />
+            </field>
+        </fieldset>
+        <fieldset id="order_address">
+            <field name="w3w">
+                <aspect name="to_customer_address" />
+            </field>
+        </fieldset>
+    </scope>
+</config>
+
+
+
