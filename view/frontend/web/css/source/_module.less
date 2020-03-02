@@ -20,6 +20,17 @@
             padding-left: @form-element-input__height;
         }
 
+        input {
+            &.hidden {
+                display: none;
+            }
+        }
+
+        #autosuggest-w3w {
+            &:extend(.field .control._with-tooltip input all);
+            width: calc(~'100% -' @checkout-tooltip-icon__font-size + @indent__s + @indent__xs) !important;
+        }
+
         > .ui-autocomplete {
             width: calc(~'100% -' @checkout-tooltip-icon__font-size + @indent__s + @indent__xs) !important;
             padding: 0;

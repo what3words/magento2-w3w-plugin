@@ -57,7 +57,7 @@ class ViewModel implements ArgumentInterface
      */
     public function getApiKey()
     {
-        return base64_encode($this->helper->getApiKey());
+        return $this->helper->getApiKey();
     }
 
     /**

@@ -107,8 +107,6 @@ class LayoutProcessor implements LayoutProcessorInterface
                 'template' => 'What3Words_What3Words/form/field',
                 'elementTmpl' => 'What3Words_What3Words/form/element/input',
                 'placeholder' => $this->helperConfig->getPlaceholder(),
-                'currentColor' => $this->helperConfig->getIconColor(),
-                'apiKey' => base64_encode($this->helperConfig->getApiKey()),
                 'tooltipTpl' => 'What3Words_What3Words/form/element/helper/tooltip',
                 'tooltip' => [
                     'description' => __($description),

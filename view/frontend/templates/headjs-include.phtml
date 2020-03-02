@@ -1,0 +1,9 @@
+<?php
+/**
+ * @author Vlad Patru
+ */
+$viewModel = $block->getViewModel();
+?>
+<?php if($viewModel->getApiKey()) { ?>
+    <script src="https://assets.london.dev.w3w.io/sdk/v3.1/what3words.js?key=<?= $viewModel->getApiKey(); ?>"></script>
+<?php } ?>

@@ -143,8 +143,7 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                 <input type="text"
                        name="postcode"
                        value="<?= $block->escapeHtmlAttr($block->getAddress()->getPostcode()) ?>"
-                       title="<?= /* @noEscape */
-                        $block->getAttributeData()->getFrontendLabel('postcode') ?>"
+                       title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?>"
                        id="zip"
                        class="input-text validate-zip-international <?= $block->escapeHtmlAttr($viewModel->getAddressHelper()->getAttributeValidationClass('postcode')) ?>">
                 <div role="alert" class="message warning" style="display:none">
@@ -169,38 +168,29 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                 <div class="control  _with-tooltip">
                     <?php $customAttr = $block->escapeHtmlAttr($block->getAddress()->getCustomAttribute('w3w') ? $block->getAddress()->getCustomAttribute('w3w')->getValue() : ''); ?>
                     <div class="input-wrap-w3w">
-                        <svg viewBox="0 0 32 32" class="what3words-logo">
-                            <path fill="<?= /* @noEscape */ $viewModel->getColor(); ?>" d="M10.7,4h2L4,28H2L10.7,4z M19.7,4h2L13,28h-2L19.7,4z M28.7,4h2L22,28h-2L28.7,4z"></path>
-                        </svg>
                         <input type="text" name="w3w"
                            value="<?= /* @noEscape */ $customAttr; ?>"
                            title="<?= /* @noEscape */ $customAttr; ?>"
-                           data-validate="{'validate-w3w':true}"
-                           data-mage-init='{"w3wAutocomplete":{
-                                "formSelector":"#form-validate",
-                                "destinationSelector":"#w3w_autocomplete"}
-                           }'
-                           placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>"
-                           apiKey="<?= /* @noEscape */ $viewModel->getApiKey(); ?>"
-                           class="input-text <?= /* @noEscape */ $customAttr; ?> what3words-autosuggest" id="w3w">
-                            <div class="field-tooltip toggle">
-                                <span id="tooltip-label" class="label">Tooltip</span>
-                                <span id="tooltip-w3w"
-                                        class="tooltip-toggle action-help"
-                                        tabindex="0"
-                                        data-toggle="dropdown"
-                                        data-bind="mageInit: {'dropdown':{'activeClass': '_active', 'parent': '.field-tooltip.toggle'}}"
-                                        aria-labelledby="tooltip-label">
-                                </span>
-                                <div class="tooltip-content" data-target="dropdown">
-                                    <?= /* @noEscape */ __('By entering your 3 word address you make it much
-                                    easier for our delivery partners to find you first time.
-                                    To discover your 3 word address, visit 
-                                    <a href="https://what3words.com" target="_blank">what3words.com</a>') ?>
-                                </div>
+                           data-mage-init='{"w3wAutocomplete":{}}'
+                           class="input-text <?= /* @noEscape */ $customAttr; ?> hidden what3words-autosuggest" id="w3w">
+                        <div class="field-tooltip toggle">
+                            <span id="tooltip-label" class="label">Tooltip</span>
+                            <span id="tooltip-w3w"
+                                  class="tooltip-toggle action-help"
+                                  tabindex="0"
+                                  data-toggle="dropdown"
+                                  data-bind="mageInit: {'dropdown':{'activeClass': '_active', 'parent': '.field-tooltip.toggle'}}"
+                                  aria-labelledby="tooltip-label">
+                            </span>
+                            <div class="tooltip-content" data-target="dropdown">
+                                <?= /* @noEscape */ __('By entering your 3 word address you make it much
+                                easier for our delivery partners to find you first time.
+                                To discover your 3 word address, visit 
+                                <a href="https://what3words.com" target="_blank">what3words.com</a>') ?>
                             </div>
-                            <div id="w3w_autocomplete" class="w3w-autocomplete"></div>
+                        </div>
 
+                        <what3words-autosuggest id="autosuggest-w3w" placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>" value="<?= /* @noEscape */ $customAttr; ?>" clip-to-country="" validation="true"/>
                     </div>
                 </div>
             </div>
@@ -257,7 +247,8 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
     {
         "#form-validate": {
             "addressValidation": {
-                "postCodes": <?= /* @noEscape */ $block->getPostCodeConfig()->getSerializedPostCodes(); ?>
+                "postCodes": <?= /* @noEscape */
+                $block->getPostCodeConfig()->getSerializedPostCodes(); ?>
             }
         },
         "#country": {

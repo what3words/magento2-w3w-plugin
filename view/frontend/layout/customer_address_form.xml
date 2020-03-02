@@ -6,6 +6,13 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="head.additional">
+        <block ifconfig="what3words/general/enabled" name="head_w3w_js_block" template="What3Words_What3Words::headjs-include.phtml">
+            <arguments>
+                <argument name="view_model" xsi:type="object">What3Words\What3words\ViewModel\ViewModel</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
     <body>
         <referenceBlock name="customer_address_edit">
             <action method="setTemplate" ifconfig="what3words/general/enabled">

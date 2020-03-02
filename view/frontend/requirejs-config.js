@@ -18,12 +18,6 @@ var config = {
             },
             'Magento_Checkout/js/model/shipping-save-processor/payload-extender': {
                 'What3Words_What3Words/js/model/payload-extender': true
-            },
-            'mage/validation': {
-                'What3Words_What3Words/js/w3wValidation': true
-            },
-            'Magento_Ui/js/lib/validation/rules': {
-                'What3Words_What3Words/js/ui-w3wValidation': true
             }
         }
     },

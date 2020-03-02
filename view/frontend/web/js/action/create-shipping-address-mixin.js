@@ -10,7 +10,7 @@ define([
 
             if (messageContainer.custom_attributes !== undefined) {
                 $.each(messageContainer.custom_attributes , function( key, value ) {
-                    messageContainer['custom_attributes'][key] = value.replace('/', '');;
+                    messageContainer['custom_attributes'][key] = value;
                 });
             }
 
