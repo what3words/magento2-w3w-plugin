@@ -11,6 +11,7 @@ namespace What3Words\What3Words\Setup\Patch\Data;
 
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
+use Magento\Framework\Setup\Patch\PatchVersionInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Customer\Setup\CustomerSetup;
@@ -19,7 +20,7 @@ use Magento\Customer\Setup\CustomerSetup;
  * Class AddW3wAttribute
  * Setup w3w attribute into database
  */
-class AddW3wAttribute implements DataPatchInterface, PatchRevertableInterface
+class AddW3wAttribute implements DataPatchInterface, PatchVersionInterface, PatchRevertableInterface
 {
 
     /**
@@ -108,5 +109,13 @@ class AddW3wAttribute implements DataPatchInterface, PatchRevertableInterface
     public static function getDependencies()
     {
         return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getVersion()
+    {
+        return '2.0.0';
     }
 }
