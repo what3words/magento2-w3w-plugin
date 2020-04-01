@@ -3,7 +3,7 @@
     <referenceContainer name="head.additional">
         <block ifconfig="what3words/general/enabled" name="head_w3w_js_block" template="What3Words_What3Words::headjs-include.phtml">
             <arguments>
-                <argument name="view_model" xsi:type="object">What3Words\What3words\ViewModel\ViewModel</argument>
+                <argument name="view_model" xsi:type="object">What3Words\What3Words\ViewModel\ViewModel</argument>
             </arguments>
         </block>
     </referenceContainer>
