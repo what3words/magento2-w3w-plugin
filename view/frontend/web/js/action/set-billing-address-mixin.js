@@ -1,3 +1,4 @@
+
 define([
     'jquery',
     'mage/utils/wrapper',
@@ -23,7 +24,7 @@ define([
                             value = value['value'];
                         }
                         if (code === 'w3w') {
-                            billingAddress['extension_attributes'][code] = value.replace('/', '');;
+                            billingAddress['extension_attributes'][code] = value;
                         }
                     });
                 }

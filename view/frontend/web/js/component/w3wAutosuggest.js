@@ -24,6 +24,7 @@ define([
             inputParent.addEventListener("select", (value) => {
                 if (value.detail !== hiddenInput.val()) {
                     hiddenInput.val(value.detail);
+                    hiddenInput.attr('value', value.detail);
                     hiddenInput.keyup();
                 }
             });
