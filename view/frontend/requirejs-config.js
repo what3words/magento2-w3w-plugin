@@ -23,7 +23,9 @@ var config = {
     },
     map: {
         '*': {
-            w3wAutocomplete: 'What3Words_What3Words/js/widget/w3wAutosuggest'
+            w3wAutocomplete: 'What3Words_What3Words/js/widget/w3wAutosuggest',
+            'Magento_Checkout/template/billing-address/details.html':
+                'What3Words_What3Words/template/billing-address/details.html'
         }
     }
 };

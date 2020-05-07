@@ -21,8 +21,8 @@ define([
                         value = value['value'];
                     }
                     if (code === 'w3w') {
-                        shippingAddress['customAttributes'][code] = value;
-                        shippingAddress['extension_attributes'][code] = value;
+                        shippingAddress['customAttributes'][code] = '///'+value;
+                        shippingAddress['extension_attributes'][code] = '///'+value;
                     }
 
                 });

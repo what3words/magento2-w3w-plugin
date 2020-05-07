@@ -2,10 +2,10 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="what3words" translate="label" sortOrder="120">
-            <label>what3words</label>
+            <label>what3words address</label>
         </tab>
         <section id="what3words" translate="label" type="text" sortOrder="100" showInDefault="1" showInStore="1" showInWebsite="1">
-            <label>what3words</label>
+            <label>what3words address</label>
             <tab>what3words</tab>
             <resource>What3Words_What3Words::what3words</resource>
             <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1">

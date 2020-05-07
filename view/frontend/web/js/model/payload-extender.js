@@ -21,7 +21,7 @@ define([
                     if(shippingAddress.customAttributes.w3w == "undefined" || shippingAddress.customAttributes.w3w == null) {
                         w3w = null;
                     } else {
-                        w3w = shippingAddress.customAttributes.w3w;
+                        w3w = '///' + shippingAddress.customAttributes.w3w;
                     }
                 }
             }

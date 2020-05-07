@@ -24,7 +24,7 @@ define([
                             value = value['value'];
                         }
                         if (code === 'w3w') {
-                            billingAddress['extension_attributes'][code] = value;
+                            billingAddress['extension_attributes'][code] = '///' + value;
                         }
                     });
                 }

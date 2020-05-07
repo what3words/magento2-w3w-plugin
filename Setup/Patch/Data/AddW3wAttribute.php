@@ -104,6 +104,28 @@ class AddW3wAttribute implements DataPatchInterface, PatchRevertableInterface
         ]);
         $attribute->save();
 
+        if ($this->moduleDataSetup->tableExists('w3w_sales_order')) {
+            $orderData = $this->getOrderData('w3w_sales_order');
+            foreach ($orderData as $orderD) {
+                $this->moduleDataSetup->getConnection()->update(
+                    $this->moduleDataSetup->getTable('sales_order_address'),
+                    ['w3w' => $orderD['w3w']],
+                    ['parent_id = ?' => $orderD['order_id']]
+                );
+            }
+        }
+
+        if ($this->moduleDataSetup->tableExists('w3w_sales_quote')) {
+            $orderData = $this->getOrderData('w3w_sales_quote');
+            foreach ($orderData as $orderD) {
+                $this->moduleDataSetup->getConnection()->update(
+                    $this->moduleDataSetup->getTable('quote_address'),
+                    ['w3w' => $orderD['w3w']],
+                    ['quote_id = ?' => $orderD['quote_id']]
+                );
+            }
+        }
+
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
@@ -133,5 +155,17 @@ class AddW3wAttribute implements DataPatchInterface, PatchRevertableInterface
         return [
 
         ];
+    }
+
+    /**
+     * Get old table data
+     * @param $table
+     * @return mixed
+     */
+    public function getOrderData($table)
+    {
+        $orderTable = $this->moduleDataSetup->getConnection();
+        $sql = $orderTable->select()->from($table);
+        return $orderTable->fetchAll($sql);
     }
 }

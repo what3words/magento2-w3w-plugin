@@ -47,17 +47,12 @@ class ApiDataObjectHelperPlugin
         if ($this->helperConfig->getIsEnabled() === '1' && isset($api)) {
             switch ($interfaceName) {
                 case 'Magento\Sales\Api\Data\OrderAddressInterface':
-                    if (isset($data['extension_attributes']) &&
-                        ($data['extension_attributes'] instanceof AddressExtensionInterface)) {
-                        $data['extension_attributes'] = $data['extension_attributes']->__toArray();
-                    }
-                    break;
                 case 'Magento\Customer\Api\Data\AddressInterface':
                     if (isset($data['extension_attributes']) &&
                         ($data['extension_attributes'] instanceof AddressExtensionInterface)) {
                         $data['extension_attributes'] = $data['extension_attributes']->__toArray();
                         if (isset($data['extension_attributes']['w3w'])) {
-                            $data['w3w'] = $data['extension_attributes']['w3w'];
+                            $data['w3w'] = '///' . $data['extension_attributes']['w3w'];
                         }
                     }
                     break;

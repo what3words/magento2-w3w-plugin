@@ -122,7 +122,7 @@ class LayoutProcessor implements LayoutProcessorInterface
                 'validate-w3w' => true
             ],
             'options' => [],
-            'label' => __('what3words')
+            'label' => __('what3words address')
         ];
 
         return $field;
