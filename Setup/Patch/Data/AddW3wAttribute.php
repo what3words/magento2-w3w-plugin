@@ -90,9 +90,13 @@ class AddW3wAttribute implements DataPatchInterface, PatchRevertableInterface
         $attribute = $customerSetup->getEavConfig()->getAttribute(AttributeProvider::ENTITY, 'w3w');
         $attribute->addData([
             'used_in_forms' => [
+                'adminhtml_customer',
                 'adminhtml_customer_address',
                 'customer_address_edit',
-                'customer_register_address'
+                'customer_register_address',
+                'adminhtml_checkout',
+                'checkout_register',
+                'customer_account_edit'
             ],
             'is_used_in_grid' => true,
             'is_visible_in_grid' => true
