@@ -54,6 +54,14 @@ class ApiDataObjectHelperPlugin
                         if (isset($data['extension_attributes']['w3w'])) {
                             $data['w3w'] = '///' . $data['extension_attributes']['w3w'];
                         }
+
+                        if (isset($data['extension_attributes']['w3w_nearest'])) {
+                            $data['w3w_nearest'] = $data['extension_attributes']['w3w_nearest'];
+                        }
+
+                        if (isset($data['extension_attributes']['w3w_coordinates'])) {
+                            $data['w3w_coordinates'] = $data['extension_attributes']['w3w_coordinates'];
+                        }
                     }
                     break;
                 case 'Magento\Quote\Api\Data\TotalsInterface':

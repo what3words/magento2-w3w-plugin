@@ -1,12 +1,16 @@
 {
     "sales_order_address": {
         "column": {
-            "w3w": true
+            "w3w": true,
+            "w3w_nearest": true,
+            "w3w_coordinates": true
         }
     },
     "quote_address": {
         "column": {
-            "w3w": true
+            "w3w": true,
+            "w3w_nearest": true,
+            "w3w_coordinates": true
         }
     }
 }

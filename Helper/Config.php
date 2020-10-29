@@ -9,9 +9,9 @@
  */
 namespace What3Words\What3Words\Helper;
 
-use \Magento\Framework\App\Helper\AbstractHelper;
-use \Magento\Framework\App\Helper\Context;
-use \Magento\Framework\Encryption\EncryptorInterface;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Encryption\EncryptorInterface;
 
 /**
  * Class Config
@@ -77,5 +77,61 @@ class Config extends AbstractHelper
     public function getIconColor()
     {
         return $this->getConfig('frontend/icon_color');
+    }
+
+    /**
+     * @return string
+     */
+    public function getCoordinates()
+    {
+        return $this->getConfig('general/save_coordinates');
+    }
+
+    /**
+     * @return string
+     */
+    public function getNearest()
+    {
+        return $this->getConfig('general/save_nearest');
+    }
+
+    /**
+     * @return string
+     */
+    public function getClipping()
+    {
+        return $this->getConfig('general/clipping');
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryIso()
+    {
+        return $this->getConfig('general/country');
+    }
+
+    /**
+     * @return string
+     */
+    public function getCircleCoords()
+    {
+        return $this->getConfig('general/circle') . ',' . $this->getConfig('general/circle_radius');
+    }
+
+    /**
+     * @return string
+     */
+    public function getBoxCoords()
+    {
+        return $this->getConfig('general/bounding_box_sw') . ',' . $this->getConfig('general/bounding_box_ne');
+    }
+
+    /**
+     * @return string
+     */
+    public function getPolygonCoords()
+    {
+        return $this->getConfig('general/polygon');
     }
 }

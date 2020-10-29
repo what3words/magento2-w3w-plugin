@@ -63,6 +63,8 @@ class SaveInOrder implements ObserverInterface
     public function execute(Observer $observer)
     {
         $api = $this->helperConfig->getApiKey();
+        $saveCoordinates = $this->helperConfig->getCoordinates();
+        $saveNearestPlace = $this->helperConfig->getNearest();
         if ($this->helperConfig->getIsEnabled() === '1' && isset($api)) {
             /** @var Quote $quote */
             $quote = $observer->getEvent()->getQuote();
@@ -75,10 +77,19 @@ class SaveInOrder implements ObserverInterface
             $quoteObj = $this->quoteRepository->get($quote->getId());
             $orderObj = $this->orderRepository->get($order->getId());
             $quoteW3w = $quoteObj->getShippingAddress()->getData('w3w');
+            $quoteW3wCoords = $quoteObj->getShippingAddress()->getData('w3w_coordinates');
+            $quoteW3wNearest = $quoteObj->getShippingAddress()->getData('w3w_nearest');
 
             try {
                 if (!$quote->isVirtual()) {
                     $orderW3w = $orderObj->getShippingAddress()->setData('w3w', $quoteW3w);
+                    if ($saveCoordinates === '1') {
+                        $orderW3w = $orderObj->getShippingAddress()->setData('w3w_coordinates', $quoteW3wCoords);
+                    }
+
+                    if ($saveNearestPlace === '1') {
+                        $orderW3w = $orderObj->getShippingAddress()->setData('w3w_nearest', $quoteW3wNearest);
+                    }
                     $orderAddress = $orderObj->setShippingAddress($orderW3w);
                     $this->orderRepository->save($orderAddress);
                 }

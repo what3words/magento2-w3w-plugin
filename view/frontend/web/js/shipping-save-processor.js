@@ -15,11 +15,15 @@ define([
     return {
         saveShippingInformation: function() {
             var payload;
-            var w3w = $('[name="custom_attributes[w3w]"]').val();
+            var w3w = $('[name="custom_attributes[w3w]"]').val(),
+                w3wNearest = $('[name="custom_attributes[w3w_nearest]"]').val(),
+                w3wCoordinates = $('[name="custom_attributes[w3w_coordinates]"]').val();
 
             if(!quote.billingAddress()) {
                 selectBillingAddressAction(quote.shippingAddress());
             }
+
+
 
             payload = {
                 addressInformation: {
@@ -28,7 +32,14 @@ define([
                     shipping_method_code: quote.shippingMethod().method_code,
                     shipping_carrier_code: quote.shippingMethod().carrier_code,
                     extension_attributes: {
-                        w3w: quote.shippingAddress().extension_attributes.w3w
+                        w3w: quote.shippingAddress().extension_attributes.w3w,
+                        w3w_nearest: w3wNearest,
+                        w3w_coordinates: w3wCoordinates
+                    },
+                    custom_attributes: {
+                        w3w: quote.shippingAddress().custom_attributes.w3w,
+                        w3w_nearest: w3wNearest,
+                        w3w_coordinates: w3wCoordinates
                     }
                 }
             };

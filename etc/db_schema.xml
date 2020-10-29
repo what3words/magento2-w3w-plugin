@@ -2,8 +2,12 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="sales_order_address" resource="sales" engine="innodb" comment="Sales Flat Order Address">
         <column xsi:type="varchar" name="w3w" nullable="true" comment="What3Words address"/>
+        <column comment="What3Words Nearest Place" length="255" name="w3w_nearest" nullable="true" xsi:type="varchar"/>
+        <column comment="What3Words Coorinates" length="255" name="w3w_coordinates" nullable="true" xsi:type="varchar"/>
     </table>
     <table name="quote_address" resource="checkout" engine="innodb" comment="Sales Flat Quote Address">
         <column xsi:type="varchar" name="w3w" nullable="true" comment="What3Words address"/>
+        <column comment="What3Words Nearest Place" length="255" name="w3w_nearest" nullable="true" xsi:type="varchar"/>
+        <column comment="What3Words Coorinates" length="255" name="w3w_coordinates" nullable="true" xsi:type="varchar"/>
     </table>
 </schema>

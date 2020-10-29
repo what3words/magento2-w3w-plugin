@@ -27,7 +27,8 @@ class LayoutProcessor implements LayoutProcessorInterface
 
     public function __construct(
         Config $helperConfig
-    ) {
+    )
+    {
         $this->helperConfig = $helperConfig;
     }
 
@@ -71,6 +72,12 @@ class LayoutProcessor implements LayoutProcessorInterface
             unset($result['components']['checkout']['children']['steps']['children']
                 ['shipping-step']['children']['shippingAddress']['children']
                 ['shipping-address-fieldset']['children']['w3w']);
+            unset($result['components']['checkout']['children']['steps']['children']
+                ['shipping-step']['children']['shippingAddress']['children']
+                ['shipping-address-fieldset']['children']['w3w_coordinates']);
+            unset($result['components']['checkout']['children']['steps']['children']
+                ['shipping-step']['children']['shippingAddress']['children']
+                ['shipping-address-fieldset']['children']['w3w_nearest']);
         }
 
         return $result;
@@ -86,7 +93,9 @@ class LayoutProcessor implements LayoutProcessorInterface
     {
         $fields = [];
         foreach ($this->getAdditionalFields($addressType) as $field) {
-            $fields[$field] = $this->getField($field, $scope);
+            if ($field === 'w3w') {
+                $fields[$field] = $this->getField($field, $scope);
+            }
         }
 
         return $fields;
@@ -128,6 +137,29 @@ class LayoutProcessor implements LayoutProcessorInterface
         return $field;
     }
 
+    public function getHiddenField($attributeCode, $scope)
+    {
+        $field = [
+            'component' => 'Magento_Ui/js/form/element/abstract',
+            'config' => [
+                'customScope' => $scope,
+                'customEntry' => null,
+                'template' => 'ui/form/field',
+                'elementTmpl' => 'ui/form/element/input',
+            ],
+            'dataScope' => $scope . '.' . $attributeCode,
+            'additionalClasses' => 'w3w-hidden-field',
+            'sortOrder' => '510',
+            'visible' => true,
+            'provider' => 'checkoutProvider',
+            'validation' => '',
+            'options' => [],
+            'label' => ''
+        ];
+
+        return $field;
+    }
+
     /**
      * @param string $addressType
      * @return array
@@ -137,6 +169,8 @@ class LayoutProcessor implements LayoutProcessorInterface
         $shippingAttributes = [];
         $billingAttributes = [];
         $shippingAttributes[] = 'w3w';
+        $shippingAttributes[] = 'w3w_coordinates';
+        $shippingAttributes[] = 'w3w_nearest';
 
         return $addressType == 'shipping' ? $shippingAttributes : $billingAttributes;
     }
