@@ -11,7 +11,6 @@ namespace What3Words\What3Words\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
-use Magento\Framework\Encryption\EncryptorInterface;
 
 /**
  * Class Config
@@ -21,20 +20,14 @@ class Config extends AbstractHelper
 {
     const PREFIX = 'what3words/';
 
-    /** @var EncryptorInterface */
-    protected $encryptor;
-
     /**
      * Config constructor.
      * @param Context $context
-     * @param EncryptorInterface $encryptor
      */
     public function __construct(
-        Context $context,
-        EncryptorInterface $encryptor
+        Context $context
     ) {
         parent::__construct($context);
-        $this->encryptor = $encryptor;
     }
 
     /**
@@ -59,8 +52,7 @@ class Config extends AbstractHelper
      */
     public function getApiKey()
     {
-        $key = $this->getConfig('general/api_key');
-        return $this->encryptor->decrypt($key);
+        return $this->getConfig('general/api_key');
     }
 
     /**
