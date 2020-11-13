@@ -8,10 +8,6 @@ $viewModel = $block->getViewModel();
     <script src="https://assets.what3words.com/sdk/v3.1/what3words.js?key=<?= $viewModel->getApiKey(); ?>"></script>
     <script>
         window.w3wConfig = <?= /* @noEscape */ $viewModel->getSerializedConfig() ?>;
-        what3words.api.setOptions({
-            headers: {
-                'X-W3W-Plugin': `what3words-Magento/${window.w3wConfig.w3w_version}`
-            }
-        })
     </script>
 <?php } ?>
+

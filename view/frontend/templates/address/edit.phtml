@@ -189,7 +189,7 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                                 <a href="https://what3words.com" target="_blank">what3words.com</a>') ?>
                             </div>
                         </div>
-                        <what3words-autosuggest id="autosuggest-w3w" placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>" value="<?= /* @noEscape */ $customAttr; ?>" validation="true"/>
+                        <what3words-autosuggest headers='{"X-W3W-Plugin": "what3words-Magento/<?= $viewModel->getConfig()['w3w_version'];?>"}' id="autosuggest-w3w" placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>" value="<?= /* @noEscape */ $customAttr; ?>" validation="true"/>
                     </div>
                     <div class="hidden-inputs">
                         <?php

@@ -17,10 +17,6 @@ define([
                 hiddenInput = $('input.what3words-autosuggest'),
                 country = $('[name="country_id"] option:selected').val();
 
-            input.addEventListener("focus", (value) => {
-
-            });
-
             if (customData.clipping === 'clip-to-circle') {
                 inputParent.setAttribute('clip-to-circle', customData.circle_data);
             } else if (customData.clipping === 'clip-to-polygon') {

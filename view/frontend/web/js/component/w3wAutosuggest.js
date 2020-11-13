@@ -20,6 +20,8 @@ define([
                 quoteAddress = quote.shippingAddress(),
                 checkoutData = customerData.get('checkout-data')();
 
+            inputParent.setAttribute('headers', '{"X-W3W-Plugin": "what3words-Magento/'+customData.w3w_version+'"}');
+
             $(document).on('focus', '.what3words-input', function () {
                 var country = $('[name="country_id"] option:selected').val();
                 if (customData.clipping === 'clip-to-circle') {
@@ -39,6 +41,7 @@ define([
             });
 
             inputParent.addEventListener("select", (value) => {
+
                 if (value.detail !== hiddenInput.val()) {
                     hiddenInput.val(value.detail);
                     hiddenInput.attr('value', value.detail);
