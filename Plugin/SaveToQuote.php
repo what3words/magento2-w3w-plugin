@@ -63,6 +63,8 @@ class SaveToQuote
 
             $quote = $this->quoteRepository->getActive($cartId);
             $quote->setW3w($extAttributes->getW3w());
+            $quote->setW3wCoordinates($extAttributes->getW3wCoordinates());
+            $quote->setW3wNearest($extAttributes->getW3wNearest());
         }
     }
 }

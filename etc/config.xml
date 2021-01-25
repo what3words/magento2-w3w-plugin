@@ -2,6 +2,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <what3words>
+            <general>
+                <circle_radius>1</circle_radius>
+            </general>
             <frontend>
                 <placeholder>e.g. lock.spout.radar</placeholder>
                 <icon_color>#e11f26</icon_color>

@@ -61,6 +61,8 @@ class ShippingAddressManagementPlugin
             if (!empty($extAttributes)) {
                 try {
                     $address->setData('w3w', $address->getExtensionAttributes()->getW3w());
+                    $address->setData('w3w_nearest', $address->getExtensionAttributes()->getW3wNearest());
+                    $address->setData('w3w_coordinates', $address->getExtensionAttributes()->getW3wCoordinates());
                 } catch (\Exception $e) {
                     $this->logger->critical($e->getMessage());
                 }

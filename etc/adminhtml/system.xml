@@ -14,9 +14,63 @@
                     <label>Enabled?</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="api_key" translate="label" type="obscure" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                <field id="api_key" translate="label" type="password" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>API Key</label>
-                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="save_coordinates" translate="label" type="select" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Save coordinates</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="save_nearest" translate="label" type="select" sortOrder="30" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Save nearest place</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="clipping" translate="label" type="select" sortOrder="40" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Clip to</label>
+                    <source_model>What3Words\What3Words\Model\Config\Source\Clipping</source_model>
+                    <comment>If default option "Select clipping" is selected, autocomplete will clip to the country selected on checkout</comment>
+                </field>
+                <field id="country" translate="label" type="text" sortOrder="50" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Country iso</label>
+                    <depends>
+                        <field id="clipping">country</field>
+                    </depends>
+                    <comment>2 digit country ISO code</comment>
+                </field>
+                <field id="circle" translate="label" type="text" sortOrder="60" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Circle coordinates</label>
+                    <depends>
+                        <field id="clipping">circle</field>
+                    </depends>
+                    <comment>Input data as: Latitude,longitude (ex: 51.508,-0.125)</comment>
+                </field>
+                <field id="circle_radius" translate="label" type="text" sortOrder="70" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Circle radius</label>
+                    <depends>
+                        <field id="clipping">circle</field>
+                    </depends>
+                    <comment>Input circle radius ex: 2 ( this means 2km radius )</comment>
+                </field>
+                <field id="bounding_box_sw" translate="label" type="text" sortOrder="80" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Southwest coordinates</label>
+                    <depends>
+                        <field id="clipping">bounding-box</field>
+                    </depends>
+                    <comment>Input southwest coordinates</comment>
+                </field>
+                <field id="bounding_box_ne" translate="label" type="text" sortOrder="90" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Northeast coordinates</label>
+                    <depends>
+                        <field id="clipping">bounding-box</field>
+                    </depends>
+                    <comment>Input northeast coordinates</comment>
+                </field>
+                <field id="polygon" translate="label" type="text" sortOrder="90" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Polygon coordinates string</label>
+                    <depends>
+                        <field id="clipping">polygon</field>
+                    </depends>
+                    <comment>Input Polygon coordinates</comment>
                 </field>
             </group>
             <group id="frontend" translate="label" type="text" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">

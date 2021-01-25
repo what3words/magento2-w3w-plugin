@@ -6,4 +6,8 @@ $viewModel = $block->getViewModel();
 ?>
 <?php if($viewModel->getApiKey()) { ?>
     <script src="https://assets.what3words.com/sdk/v3.1/what3words.js?key=<?= $viewModel->getApiKey(); ?>"></script>
+    <script>
+        window.w3wConfig = <?= /* @noEscape */ $viewModel->getSerializedConfig() ?>;
+    </script>
 <?php } ?>
+

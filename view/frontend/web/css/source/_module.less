@@ -1,5 +1,18 @@
 @svg__height-width: 18px;
 & when (@media-common = true) {
+
+    .w3w-hidden-field {
+        //display: none !important;
+    }
+
+    .field {
+        &.w3w {
+            .hidden-inputs {
+                display: none !important;
+            }
+        }
+    }
+
     .input-wrap-w3w {
         position: relative;
 
@@ -77,7 +90,7 @@
 
             .tooltip-toggle {
                 .lib-icon-font(
-                        @checkout-tooltip-icon__content,
+                    @checkout-tooltip-icon__content,
                     @_icon-font-size: @checkout-tooltip-icon__font-size,
                     @_icon-font-text-hide: true,
                     @_icon-font-color: @checkout-tooltip-icon__color,

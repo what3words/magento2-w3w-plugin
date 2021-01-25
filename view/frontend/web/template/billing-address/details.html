@@ -13,7 +13,7 @@
     <a if="currentBillingAddress().telephone" attr="'href': 'tel:' + currentBillingAddress().telephone" text="currentBillingAddress().telephone"></a><br/>
 
     <each args="data: currentBillingAddress().customAttributes, as: 'element'">
-        <text args="element.value"/>
+        <text if="element.attribute_code == 'w3w'" args="element.value"/>
         <br/>
     </each>
 

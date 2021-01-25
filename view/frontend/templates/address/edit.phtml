@@ -185,12 +185,25 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                             <div class="tooltip-content" data-target="dropdown">
                                 <?= /* @noEscape */ __('By entering your 3 word address you make it much
                                 easier for our delivery partners to find you first time.
-                                To discover your 3 word address, visit 
+                                To discover your 3 word address, visit
                                 <a href="https://what3words.com" target="_blank">what3words.com</a>') ?>
                             </div>
                         </div>
-
-                        <what3words-autosuggest id="autosuggest-w3w" placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>" value="<?= /* @noEscape */ $customAttr; ?>" clip-to-country="" validation="true"/>
+                        <what3words-autosuggest headers='{"X-W3W-Plugin": "what3words-Magento/<?= $viewModel->getConfig()['w3w_version'];?>()"}' id="autosuggest-w3w" placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>" value="<?= /* @noEscape */ $customAttr; ?>" validation="true"/>
+                    </div>
+                    <div class="hidden-inputs">
+                        <?php
+                        $w3wNearest = $block->escapeHtmlAttr($block->getAddress()->getCustomAttribute('w3w_nearest') ? $block->getAddress()->getCustomAttribute('w3w_nearest')->getValue() : '');
+                        $w3wCoords = $block->escapeHtmlAttr($block->getAddress()->getCustomAttribute('w3w_coordinates') ? $block->getAddress()->getCustomAttribute('w3w_coordinates')->getValue() : '');
+                        ?>
+                        <input type="hidden" name="w3w_nearest"
+                               value="<?= /* @noEscape */ $w3wNearest; ?>"
+                               title="<?= /* @noEscape */ $w3wNearest; ?>"
+                               class="input-text <?= /* @noEscape */ $w3wNearest; ?> hidden" id="w3w_nearest">
+                        <input type="hidden" name="w3w_coordinates"
+                               value="<?= /* @noEscape */ $w3wCoords; ?>"
+                               title="<?= /* @noEscape */ $w3wCoords; ?>"
+                               class="input-text <?= /* @noEscape */ $w3wCoords; ?> hidden" id="w3w_coordinates">
                     </div>
                 </div>
             </div>

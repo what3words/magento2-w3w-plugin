@@ -10,13 +10,13 @@
 
 namespace What3Words\What3Words\Observer;
 
-use Psr\Log\LoggerInterface;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Event\Observer as EventObserver;
+use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Sales\Model\OrderRepository;
-use Magento\Framework\Event\Observer as EventObserver;
-use Magento\Framework\Event\ObserverInterface;
-use Magento\Framework\App\RequestInterface;
+use Psr\Log\LoggerInterface;
 use What3Words\What3Words\Helper\Config;
 
 /**
@@ -98,6 +98,19 @@ class SaveOrderAddress implements ObserverInterface
                 $quote = $quoteObj->setShippingAddress($quoteAddress);
                 $this->quoteRepository->save($quote);
             }
+
+            if (isset($params['w3w_nearest']) && $quoteObj) {
+                $quoteAddress = $quoteObj->getShippingAddress()->setData('w3w_nearest', $params['w3w_nearest']);
+                $quote = $quoteObj->setShippingAddress($quoteAddress);
+                $this->quoteRepository->save($quote);
+            }
+
+            if (isset($params['w3w_coordinates']) && $quoteObj) {
+                $quoteAddress = $quoteObj->getShippingAddress()->setData('w3w_coordinates', $params['w3w_coordinates']);
+                $quote = $quoteObj->setShippingAddress($quoteAddress);
+                $this->quoteRepository->save($quote);
+            }
+
             return $this;
         }
     }

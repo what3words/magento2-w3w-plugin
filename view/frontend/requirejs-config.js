@@ -25,7 +25,9 @@ var config = {
         '*': {
             w3wAutocomplete: 'What3Words_What3Words/js/widget/w3wAutosuggest',
             'Magento_Checkout/template/billing-address/details.html':
-                'What3Words_What3Words/template/billing-address/details.html'
+                'What3Words_What3Words/template/billing-address/details.html',
+            'Magento_Checkout/template/shipping-information/address-renderer/default':
+                'What3Words_What3Words/template/shipping-information/address-renderer/default'
         }
     }
 };
