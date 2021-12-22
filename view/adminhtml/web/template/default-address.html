@@ -24,7 +24,7 @@
                           ifnot="_.isString(address.street)"/>
                     <br/>
                 </if>
-                <text args="', ///' + address.w3w + ', '" if="address.w3w"/>
+                <text args="', ' + address.w3w + ', '" if="address.w3w"/>
                 <text args="address.city + ', '" if="address.city"/>
                 <text args="address.region + ', '" if="address.region"/>
                 <if args="address.postcode">

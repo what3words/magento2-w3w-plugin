@@ -14,7 +14,6 @@ define([
                         value = '///' + value;
                     }
                     messageContainer['custom_attributes'][key] = value;
-                    messageContainer['extension_attributes'][key] = value;
                 });
             }
 
