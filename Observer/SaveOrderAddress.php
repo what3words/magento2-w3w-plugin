@@ -69,6 +69,7 @@ class SaveOrderAddress implements ObserverInterface
 
     /**
      * Allow an admin user to update an order's three word address
+     *
      * @param EventObserver $observer
      * @return $this
      * @throws \Magento\Framework\Exception\InputException

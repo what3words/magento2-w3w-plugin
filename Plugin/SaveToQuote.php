@@ -33,6 +33,7 @@ class SaveToQuote
 
     /**
      * SaveToQuote constructor.
+     *
      * @param QuoteRepository $quoteRepository
      * @param Config $helperConfig
      */
@@ -45,9 +46,12 @@ class SaveToQuote
     }
 
     /**
+     * Before method
+     *
      * @param ShippingInformationManagement $subject
      * @param $cartId
      * @param ShippingInformationInterface $addressInformation
+     * @return void
      * @throws NoSuchEntityException
      */
     public function beforeSaveAddressInformation(

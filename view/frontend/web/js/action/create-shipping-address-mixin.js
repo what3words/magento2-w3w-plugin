@@ -10,9 +10,6 @@ define([
 
             if (messageContainer.custom_attributes !== undefined) {
                 $.each(messageContainer.custom_attributes, function (key, value) {
-                    if (key === 'w3w') {
-                        value = '///' + value;
-                    }
                     messageContainer['custom_attributes'][key] = value;
                 });
             }

@@ -19,9 +19,6 @@ define([
                     if ($.isPlainObject(value)) {
                         value = value['value'];
                     }
-                    if (code === 'w3w') {
-                        value = '///' + value;
-                    }
                     shippingAddress['customAttributes'][code] = value;
                     shippingAddress['extension_attributes'][code] = value;
                 });

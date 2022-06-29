@@ -6,4 +6,7 @@
     <event name="admin_sales_order_address_update">
         <observer name="save_order_address" instance="What3Words\What3Words\Observer\SaveOrderAddress" />
     </event>
+    <event name="sales_order_load_after">
+        <observer name="sales_order_load_w3w_address" instance="What3Words\What3Words\Observer\OrderLoadAfter" />
+    </event>
 </config>
