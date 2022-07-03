@@ -175,9 +175,7 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                                 {Magento_version: <?=  /* @noEscape */ $viewModel->getMagentoVersion();?>,
                                 Location: Account})"'
                             id="autosuggest-w3w"  validation="true"
-                            <?php if ($viewModel->getInheritStyles()) {
-                                echo 'variant="inherit"';
-                            } ?>>
+                            variant="inherit">
                             <input
                                 class="input-text what3words-autosuggest"
                                 placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>"

@@ -148,7 +148,6 @@ class ViewModel implements ArgumentInterface
             'polygon_data' => $this->helper->getPolygonCoords(),
             'w3w_version' => $this->moduleResource->getDbVersion('What3Words_What3Words'),
             'show_tooltip' => $this->helper->getShowTooltip(),
-            'inherit_style' => $this->helper->getInheritStyles(),
             'override_label' => $this->helper->getOverrideLabel(),
             'custom_label' => $this->helper->getCustomLabel(),
             'magento_version' => $this->helper->getMagentoVersion(),
@@ -214,15 +213,5 @@ class ViewModel implements ArgumentInterface
     public function getAutosuggestFocus()
     {
         return $this->helper->getAutosuggestFocus();
-    }
-
-    /**
-     * Get inherit_style option saved in admin
-     *
-     * @return bool
-     */
-    public function getInheritStyles()
-    {
-        return $this->helper->getInheritStyles();
     }
 }

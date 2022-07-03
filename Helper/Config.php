@@ -146,16 +146,6 @@ class Config extends AbstractHelper
     }
 
     /**
-     * Get inherit style option
-     *
-     * @return bool
-     */
-    public function getInheritStyles()
-    {
-        return $this->getConfig('frontend/inherit_style');
-    }
-
-    /**
      * Get show tooltip option
      *
      * @return bool
