@@ -32,6 +32,12 @@ define([
                 inputParent.setAttribute('return-coordinates', 'true');
             }
 
+            if (customData.autosuggest_focus === '1') {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    inputParent.setAttribute('autosuggest_focus',position.coords.latitude + ',' + position.coords.longitude);
+                });
+            }
+
             inputParent.addEventListener("select", (value) => {
                 if (value.detail !== hiddenInput.val()) {
                     hiddenInput.attr('value', value.detail);

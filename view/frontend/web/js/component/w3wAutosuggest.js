@@ -18,11 +18,12 @@ define([
                 customData = window.w3wConfig,
                 hiddenInput = $('input.what3words-autosuggest'),
                 quoteAddress = quote.shippingAddress(),
-                checkoutData = customerData.get('checkout-data')();
+                checkoutData = customerData.get('checkout-data')(),
+                headers = '{"X-W3W-Plugin": "what3words-Magento/'+ customData.w3w_version +' ({Magento_version:'+ customData.magento_version +' , Location: Checkout})"}';
 
-            inputParent.setAttribute('headers', '{"X-W3W-Plugin": "what3words-Magento/'+customData.w3w_version+' ()"}');
+            inputParent.setAttribute('headers', headers);
 
-            $(document).on('focus', '.what3words-input', function () {
+            $(document).on('focus', '.what3words-autosuggest', function () {
                 var country = $('[name="country_id"] option:selected').val();
                 if (customData.clipping === 'clip-to-circle') {
                     inputParent.setAttribute('clip-to-circle', customData.circle_data);
@@ -39,6 +40,11 @@ define([
                     inputParent.setAttribute('return-coordinates', 'true');
                 }
             });
+            if (customData.autosuggest_focus === '1') {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    inputParent.setAttribute('autosuggest_focus', position.coords.latitude + ',' + position.coords.longitude);
+                });
+            }
 
             inputParent.addEventListener("select", (value) => {
 
