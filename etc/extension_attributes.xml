@@ -1,28 +1,33 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
-	<extension_attributes for="Magento\Customer\Api\Data\AddressInterface">
-		<attribute code="w3w" type="string"/>
-		<attribute code="w3w_coordinates" type="string"/>
-		<attribute code="w3w_nearest" type="string"/>
-	</extension_attributes>
-	<extension_attributes for="Magento\Quote\Api\Data\CartInterface">
-		<attribute code="w3w" type="string" />
-		<attribute code="w3w_coordinates" type="string" />
-		<attribute code="w3w_nearest" type="string" />
-	</extension_attributes>
-	<extension_attributes for="Magento\Sales\Api\Data\OrderAddressInterface">
-		<attribute code="w3w" type="string" />
-		<attribute code="w3w_coordinates" type="string" />
-		<attribute code="w3w_nearest" type="string" />
-	</extension_attributes>
-	<extension_attributes for="Magento\Checkout\Api\Data\ShippingInformationInterface">
-		<attribute code="w3w" type="string" />
-		<attribute code="w3w_coordinates" type="string" />
-		<attribute code="w3w_nearest" type="string" />
-	</extension_attributes>
-	<extension_attributes for="Magento\Quote\Api\Data\AddressInterface">
-		<attribute code="w3w" type="string" />
-		<attribute code="w3w_coordinates" type="string" />
-		<attribute code="w3w_nearest" type="string" />
-	</extension_attributes>
+    <extension_attributes for="Magento\Customer\Api\Data\AddressInterface">
+        <attribute code="w3w" type="string"/>
+        <attribute code="w3w_coordinates" type="string"/>
+        <attribute code="w3w_nearest" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Quote\Api\Data\CartInterface">
+        <attribute code="w3w" type="string" />
+        <attribute code="w3w_coordinates" type="string" />
+        <attribute code="w3w_nearest" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\OrderAddressInterface">
+        <attribute code="w3w" type="string" />
+        <attribute code="w3w_coordinates" type="string" />
+        <attribute code="w3w_nearest" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Checkout\Api\Data\ShippingInformationInterface">
+        <attribute code="w3w" type="string" />
+        <attribute code="w3w_coordinates" type="string" />
+        <attribute code="w3w_nearest" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Quote\Api\Data\AddressInterface">
+        <attribute code="w3w" type="string" />
+        <attribute code="w3w_coordinates" type="string" />
+        <attribute code="w3w_nearest" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
+        <attribute code="w3w" type="string" />
+        <attribute code="w3w_coordinates" type="string" />
+        <attribute code="w3w_nearest" type="string" />
+    </extension_attributes>
 </config>

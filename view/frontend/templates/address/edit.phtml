@@ -32,15 +32,15 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
         <?= $block->getNameBlockHtml() ?>
 
-        <?php if ($_company->isEnabled()) : ?>
+        <?php if ($_company->isEnabled()): ?>
             <?= $_company->setCompany($block->getAddress()->getCompany())->toHtml() ?>
         <?php endif ?>
 
-        <?php if ($_telephone->isEnabled()) : ?>
+        <?php if ($_telephone->isEnabled()): ?>
             <?= $_telephone->setTelephone($block->getAddress()->getTelephone())->toHtml() ?>
         <?php endif ?>
 
-        <?php if ($_fax->isEnabled()) : ?>
+        <?php if ($_fax->isEnabled()): ?>
             <?= $_fax->setFax($block->getAddress()->getFax())->toHtml() ?>
         <?php endif ?>
 
@@ -64,7 +64,7 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                        class="input-text <?= $block->escapeHtmlAttr($_streetValidationClass) ?>"/>
                 <div class="nested">
                     <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
-                    <?php for ($_i = 1, $_n = $viewModel->getAddressHelper()->getStreetLines(); $_i < $_n; $_i++) : ?>
+                    <?php for ($_i = 1, $_n = $viewModel->getAddressHelper()->getStreetLines(); $_i < $_n; $_i++): ?>
                         <div class="field additional">
                             <label class="label" for="street_<?= /* @noEscape */
                             $_i + 1 ?>">
@@ -84,7 +84,7 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
             </div>
         </div>
 
-        <?php if ($viewModel->getAddressHelper()->isVatAttributeVisible()) : ?>
+        <?php if ($viewModel->getAddressHelper()->isVatAttributeVisible()): ?>
             <div class="field taxvat">
                 <label class="label" for="vat_id">
                     <span><?= /* @noEscape */
@@ -159,37 +159,50 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
             </div>
         </div>
         <?php $apiKey = $viewModel->getApiKey();
+            $tooltipClass = $viewModel->getShowTooltip() ? '_with-tooltip' : '';
+            $fieldLabel = $viewModel->getOverrideLabel() ? $viewModel->getCustomLabel() : $block->getAttributeData()->getFrontendLabel('w3w');
         if (isset($apiKey)) { ?>
             <div class="field w3w">
                 <label class="label" for="w3w">
-                    <span><?= /* @noEscape */
-                        $block->getAttributeData()->getFrontendLabel('w3w') ?></span>
+                    <span><?= /* @noEscape */ $fieldLabel ?></span>
                 </label>
-                <div class="control  _with-tooltip">
-                    <?php $customAttr = $block->escapeHtmlAttr($block->getAddress()->getCustomAttribute('w3w') ? $block->getAddress()->getCustomAttribute('w3w')->getValue() : ''); ?>
+                <div class="control <?= /** @noEscape  */ $tooltipClass;?>">
+
                     <div class="input-wrap-w3w">
-                        <input type="text" name="w3w"
-                           value="<?= /* @noEscape */ $customAttr; ?>"
-                           title="<?= /* @noEscape */ $customAttr; ?>"
-                           data-mage-init='{"w3wAutocomplete":{}}'
-                           class="input-text <?= /* @noEscape */ $customAttr; ?> hidden what3words-autosuggest" id="w3w">
-                        <div class="field-tooltip toggle">
-                            <span id="tooltip-label" class="label">Tooltip</span>
-                            <span id="tooltip-w3w"
-                                  class="tooltip-toggle action-help"
-                                  tabindex="0"
-                                  data-toggle="dropdown"
-                                  data-bind="mageInit: {'dropdown':{'activeClass': '_active', 'parent': '.field-tooltip.toggle'}}"
-                                  aria-labelledby="tooltip-label">
-                            </span>
-                            <div class="tooltip-content" data-target="dropdown">
-                                <?= /* @noEscape */ __('By entering your 3 word address you make it much
-                                easier for our delivery partners to find you first time.
-                                To discover your 3 word address, visit
-                                <a href="https://what3words.com" target="_blank">what3words.com</a>') ?>
+                        <what3words-autosuggest
+                            headers='{"X-W3W-Plugin": "what3words-Magento/<?=  /* @noEscape */ $viewModel->getConfig()['w3w_version'];?> ({Magento_version: <?= /* @noEscape */ $viewModel->getMagentoVersion();?> , Location: Account})"}'
+                            id="autosuggest-w3w"  validation="true"
+                            variant="inherit">
+                            <input
+                                class="input-text what3words-autosuggest"
+                                placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>"
+                                type="text"
+                                name="w3w"
+                                id="what3words"
+                                data-mage-init='{"w3wAutocomplete":{}}'
+                                value="<?= /* @noEscape */ $block->getAddress()->getCustomAttribute('w3w')->getValue(); ?>"
+                                title="<?= /* @noEscape */ $fieldLabel ?>"
+                            optional
+                            />
+                        </what3words-autosuggest>
+                        <?php if ($viewModel->getShowTooltip()): ?>
+                            <div class="field-tooltip toggle">
+                                <span id="tooltip-label" class="label">Tooltip</span>
+                                <span id="tooltip-w3w"
+                                      class="tooltip-toggle action-help"
+                                      tabindex="0"
+                                      data-toggle="dropdown"
+                                      data-bind="mageInit: {'dropdown':{'activeClass': '_active', 'parent': '.field-tooltip.toggle'}}"
+                                      aria-labelledby="tooltip-label">
+                                </span>
+                                <div class="tooltip-content" data-target="dropdown">
+                                    <?= /* @noEscape */ __('By entering your 3 word address you make it much
+                                    easier for our delivery partners to find you first time.
+                                    To discover your 3 word address, visit
+                                    <a href="https://what3words.com" target="_blank">what3words.com</a>') ?>
+                                </div>
                             </div>
-                        </div>
-                        <what3words-autosuggest headers='{"X-W3W-Plugin": "what3words-Magento/<?= $viewModel->getConfig()['w3w_version'];?> ()"}' id="autosuggest-w3w" placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>" value="<?= /* @noEscape */ $customAttr; ?>" validation="true"/>
+                        <?php endif; ?>
                     </div>
                     <div class="hidden-inputs">
                         <?php
@@ -210,33 +223,33 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
 
         <?php } ?>
 
-        <?php if ($block->isDefaultBilling()) : ?>
+        <?php if ($block->isDefaultBilling()): ?>
             <div class="message info">
                 <span><?= $block->escapeHtml(__("It's a default billing address.")) ?></span>
             </div>
-        <?php elseif ($block->canSetAsDefaultBilling()) : ?>
+        <?php elseif ($block->canSetAsDefaultBilling()): ?>
             <div class="field choice set billing">
                 <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox">
                 <label class="label" for="primary_billing">
                     <span><?= $block->escapeHtml(__('Use as my default billing address')) ?></span>
                 </label>
             </div>
-        <?php else : ?>
+        <?php else: ?>
             <input type="hidden" name="default_billing" value="1"/>
         <?php endif; ?>
 
-        <?php if ($block->isDefaultShipping()) : ?>
+        <?php if ($block->isDefaultShipping()): ?>
             <div class="message info">
                 <span><?= $block->escapeHtml(__("It's a default shipping address.")) ?></span>
             </div>
-        <?php elseif ($block->canSetAsDefaultShipping()) : ?>
+        <?php elseif ($block->canSetAsDefaultShipping()): ?>
             <div class="field choice set shipping">
                 <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox">
                 <label class="label" for="primary_shipping">
                     <span><?= $block->escapeHtml(__('Use as my default shipping address')) ?></span>
                 </label>
             </div>
-        <?php else : ?>
+        <?php else: ?>
             <input type="hidden" name="default_shipping" value="1">
         <?php endif; ?>
     </fieldset>

@@ -11,6 +11,7 @@ namespace What3Words\What3Words\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\App\ProductMetadataInterface;
 
 /**
  * Class Config
@@ -23,14 +24,19 @@ class Config extends AbstractHelper
     /**
      * Config constructor.
      * @param Context $context
+     * @param ProductMetadataInterface $productMetadata
      */
     public function __construct(
-        Context $context
+        Context $context,
+        ProductMetadataInterface $productMetadata
     ) {
         parent::__construct($context);
+        $this->productMetadata = $productMetadata;
     }
 
     /**
+     * Get config placeholder method
+     *
      * @param $area
      * @return mixed
      */
@@ -40,6 +46,8 @@ class Config extends AbstractHelper
     }
 
     /**
+     * Is enabled option
+     *
      * @return bool
      */
     public function getIsEnabled()
@@ -48,6 +56,8 @@ class Config extends AbstractHelper
     }
 
     /**
+     * Get ApiKey config
+     *
      * @return string
      */
     public function getApiKey()
@@ -56,6 +66,8 @@ class Config extends AbstractHelper
     }
 
     /**
+     * Get placeholder
+     *
      * @return string
      */
     public function getPlaceholder()
@@ -64,14 +76,8 @@ class Config extends AbstractHelper
     }
 
     /**
-     * @return string
-     */
-    public function getIconColor()
-    {
-        return $this->getConfig('frontend/icon_color');
-    }
-
-    /**
+     * Get coordinates option config
+     *
      * @return string
      */
     public function getCoordinates()
@@ -80,6 +86,8 @@ class Config extends AbstractHelper
     }
 
     /**
+     * Get near option config
+     *
      * @return string
      */
     public function getNearest()
@@ -88,6 +96,8 @@ class Config extends AbstractHelper
     }
 
     /**
+     * Get clipping config
+     *
      * @return string
      */
     public function getClipping()
@@ -96,6 +106,8 @@ class Config extends AbstractHelper
     }
 
     /**
+     * Get contry iso config
+     *
      * @return string
      */
     public function getCountryIso()
@@ -104,6 +116,8 @@ class Config extends AbstractHelper
     }
 
     /**
+     * Get circle coords config
+     *
      * @return string
      */
     public function getCircleCoords()
@@ -112,6 +126,8 @@ class Config extends AbstractHelper
     }
 
     /**
+     * Get box coords config
+     *
      * @return string
      */
     public function getBoxCoords()
@@ -120,10 +136,62 @@ class Config extends AbstractHelper
     }
 
     /**
+     * Get polygon config
+     *
      * @return string
      */
     public function getPolygonCoords()
     {
         return $this->getConfig('general/polygon');
+    }
+
+    /**
+     * Get show tooltip option
+     *
+     * @return bool
+     */
+    public function getShowTooltip()
+    {
+        return $this->getConfig('frontend/show_tooltip');
+    }
+
+    /**
+     * Get override label option
+     *
+     * @return bool
+     */
+    public function getOverrideLabel()
+    {
+        return $this->getConfig('frontend/override_label');
+    }
+
+    /**
+     * Get custom label
+     *
+     * @return string
+     */
+    public function getCustomLabel()
+    {
+        return $this->getConfig('frontend/field_label');
+    }
+
+    /**
+     * Get magento version
+     *
+     * @return string
+     */
+    public function getMagentoVersion()
+    {
+        return $this->productMetadata->getVersion();
+    }
+
+    /**
+     * Get autosuggest_focus admin option
+     *
+     * @return bool
+     */
+    public function getAutosuggestFocus()
+    {
+        return $this->getConfig('frontend/autosuggest_focus');
     }
 }

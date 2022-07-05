@@ -4,18 +4,19 @@
  * See COPYING.txt for license details.
  */
 -->
-<p class="input-wrap-w3w">
-<input class="input-text hidden what3words-autosuggest" type="text" data-bind="
-    value: value,
-    valueUpdate: 'keyup',
-    hasFocus: focused,
-    attr: {
-        name: inputName,
-        placeholder: placeholder,
-        'aria-describedby': getDescriptionId(),
-        id: uid,
-        disabled: disabled
-    },
-    autoComplete: {}" />
-    <what3words-autosuggest id="autosuggest-w3w" data-bind="attr: {placeholder: placeholder,value: value}" validation="true"/>
-</p>
+<what3words-autosuggest id="autosuggest-w3w" validation="true"  variant="inherit">
+    <input class="input-text what3words-autosuggest" type="text" data-bind="
+        value: value,
+        valueUpdate: 'keyup',
+        hasFocus: focused,
+        attr: {
+            name: inputName,
+            placeholder: placeholder,
+            'aria-describedby': getDescriptionId(),
+            id: uid,
+            disabled: disabled
+        },
+        autoComplete: {}"
+        optional
+    />
+</what3words-autosuggest>

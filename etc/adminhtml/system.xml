@@ -65,7 +65,7 @@
                     </depends>
                     <comment>Input northeast coordinates</comment>
                 </field>
-                <field id="polygon" translate="label" type="text" sortOrder="90" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                <field id="polygon" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Polygon coordinates string</label>
                     <depends>
                         <field id="clipping">polygon</field>
@@ -78,9 +78,27 @@
                 <field id="placeholder" translate="label" type="text" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Placeholder text</label>
                 </field>
-                <field id="icon_color" translate="label" type="text" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
-                    <label>/// icon colour</label>
-                    <frontend_model>What3Words\What3Words\Block\ColorPicker</frontend_model>
+                <field id="show_tooltip" translate="label" type="select" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Show input tooltip?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>This will add a tooltip explainer to the what3words field that is visible at the checkout page/customer account</comment>
+                </field>
+                <field id="override_label" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Add field label</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>This will add a tooltip explainer to the what3words field that is visible at the checkout page/customer account</comment>
+                </field>
+                <field id="field_label" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Form field label</label>
+                    <depends>
+                        <field id="override_label">1</field>
+                    </depends>
+                    <comment>This adds a label element to created field. We recommend using the default label but you can customise this if needed</comment>
+                </field>
+                <field id="autosuggest_focus" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Focus autosuggest to user location</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>This will ask for user permission to get current location so the restults are closer to the user</comment>
                 </field>
             </group>
         </section>

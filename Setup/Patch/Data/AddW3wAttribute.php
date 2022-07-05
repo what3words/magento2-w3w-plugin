@@ -51,16 +51,13 @@ class AddW3wAttribute implements DataPatchInterface, PatchRevertableInterface
         ModuleDataSetupInterface $moduleDataSetup,
         CustomerSetupFactory $customerSetupFactory,
         SetFactory $attributeSetFactory
-    )
-    {
+    ) {
         $this->moduleDataSetup = $moduleDataSetup;
         $this->customerSetupFactory = $customerSetupFactory;
         $this->attributeSetFactory = $attributeSetFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
@@ -133,6 +130,7 @@ class AddW3wAttribute implements DataPatchInterface, PatchRevertableInterface
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
+    /** {@inheritdoc} */
     public function revert()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
@@ -143,26 +141,21 @@ class AddW3wAttribute implements DataPatchInterface, PatchRevertableInterface
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public function getAliases()
     {
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public static function getDependencies()
     {
-        return [
-
-        ];
+        return [];
     }
 
     /**
      * Get old table data
+     *
      * @param $table
      * @return mixed
      */

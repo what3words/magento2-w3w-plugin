@@ -8,6 +8,7 @@
             <frontend>
                 <placeholder>e.g. lock.spout.radar</placeholder>
                 <icon_color>#e11f26</icon_color>
+                <show_tooltip>1</show_tooltip>
             </frontend>
         </what3words>
     </default>

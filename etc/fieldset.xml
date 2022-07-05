@@ -31,6 +31,23 @@
                 <aspect name="to_customer_address" />
             </field>
         </fieldset>
+        <fieldset id="extra_checkout_shipping_address_fields">
+            <field name="w3w">
+                <aspect name="to_order_address"/>
+                <aspect name="to_customer_address"/>
+                <aspect name="to_order" />
+            </field>
+            <field name="w3w_coordinates">
+                <aspect name="to_order_address"/>
+                <aspect name="to_customer_address"/>
+                <aspect name="to_order" />
+            </field>
+            <field name="w3w_nearest">
+                <aspect name="to_order_address"/>
+                <aspect name="to_customer_address"/>
+                <aspect name="to_order" />
+            </field>
+        </fieldset>
     </scope>
 </config>
 

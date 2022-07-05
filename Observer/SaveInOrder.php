@@ -33,6 +33,9 @@ class SaveInOrder implements ObserverInterface
      * @var LoggerInterface
      */
     private $logger;
+    /**
+     * @var CartRepositoryInterface
+     */
     private $quoteRepository;
     /**
      * @var Config
@@ -40,6 +43,8 @@ class SaveInOrder implements ObserverInterface
     private $helperConfig;
 
     /**
+     * Construct method
+     *
      * @param OrderRepository $orderRepository
      * @param CartRepositoryInterface $quoteRepository
      * @param LoggerInterface $logger
@@ -56,9 +61,15 @@ class SaveInOrder implements ObserverInterface
         $this->logger = $logger;
         $this->helperConfig = $helperConfig;
     }
+
     /**
-     * {@inheritdoc}
+     * Observer to save custom attribute to order
+     *
+     * @param Observer $observer
+     * @return $this|void
      * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\InputException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function execute(Observer $observer)
     {

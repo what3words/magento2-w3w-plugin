@@ -52,9 +52,7 @@ class AddW3wCoordinates implements DataPatchInterface, PatchRevertableInterface
         $this->attributeSetFactory = $attributeSetFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public function apply()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
@@ -98,6 +96,7 @@ class AddW3wCoordinates implements DataPatchInterface, PatchRevertableInterface
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
+    /** {@inheritdoc} */
     public function revert()
     {
         $this->moduleDataSetup->getConnection()->startSetup();
@@ -108,17 +107,13 @@ class AddW3wCoordinates implements DataPatchInterface, PatchRevertableInterface
         $this->moduleDataSetup->getConnection()->endSetup();
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public function getAliases()
     {
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
+    /** {@inheritdoc} */
     public static function getDependencies()
     {
         return [
@@ -127,11 +122,12 @@ class AddW3wCoordinates implements DataPatchInterface, PatchRevertableInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Return version
+     *
+     * @return string
      */
     public static function getVersion()
     {
-        return '2.0.1';
+        return '3.0.0';
     }
 }
-

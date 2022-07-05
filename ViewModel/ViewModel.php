@@ -18,9 +18,7 @@ use Magento\Framework\View\Element\Block\ArgumentInterface;
 use What3Words\What3Words\Helper\Config;
 
 /**
- * Class ViewModel
- * Used to return admin settings into templates without
- * injecting as the coding standards require
+ * Class to expose config to frontend
  */
 class ViewModel implements ArgumentInterface
 {
@@ -51,6 +49,7 @@ class ViewModel implements ArgumentInterface
 
     /**
      * ViewModel constructor.
+     *
      * @param Config $helper
      * @param Address $addressHelper
      * @param Data $dirHelper
@@ -72,23 +71,20 @@ class ViewModel implements ArgumentInterface
     }
 
     /**
-     * @return string ApiKey set in admin config
+     * ApiKey set in admin config
+     *
+     * @return string
      */
     public function getApiKey()
     {
         return $this->helper->getApiKey();
     }
 
-    /**
-     * @return string Color
-     */
-    public function getColor()
-    {
-        return $this->helper->getIconColor();
-    }
 
     /**
-     * @return string Color
+     * Get placeholder
+     *
+     * @return string
      */
     public function getPlaceholder()
     {
@@ -96,6 +92,8 @@ class ViewModel implements ArgumentInterface
     }
 
     /**
+     * Get address helper
+     *
      * @return Address
      */
     public function getAddressHelper()
@@ -104,6 +102,8 @@ class ViewModel implements ArgumentInterface
     }
 
     /**
+     * Get Directory helper
+     *
      * @return Data
      */
     public function getDirHelper()
@@ -112,7 +112,9 @@ class ViewModel implements ArgumentInterface
     }
 
     /**
-     * @return string Save Coordinates set in admin config
+     * Get Coordinates set in admin config
+     *
+     * @return string
      */
     public function getSaveCoordinates()
     {
@@ -120,7 +122,9 @@ class ViewModel implements ArgumentInterface
     }
 
     /**
-     * @return string Save nearest place set in admin config
+     * Get nearest place set in admin config
+     *
+     * @return string
      */
     public function getSaveNearest()
     {
@@ -128,6 +132,8 @@ class ViewModel implements ArgumentInterface
     }
 
     /**
+     * Return config array
+     *
      * @return array
      */
     public function getConfig()
@@ -140,7 +146,12 @@ class ViewModel implements ArgumentInterface
             'circle_data' => $this->helper->getCircleCoords(),
             'box_data' => $this->helper->getBoxCoords(),
             'polygon_data' => $this->helper->getPolygonCoords(),
-            'w3w_version' => $this->moduleResource->getDbVersion('What3Words_What3Words')
+            'w3w_version' => $this->moduleResource->getDbVersion('What3Words_What3Words'),
+            'show_tooltip' => $this->helper->getShowTooltip(),
+            'override_label' => $this->helper->getOverrideLabel(),
+            'custom_label' => $this->helper->getCustomLabel(),
+            'magento_version' => $this->helper->getMagentoVersion(),
+            'autosuggest_focus' => $this->helper->getAutosuggestFocus()
         ];
     }
 
@@ -152,5 +163,55 @@ class ViewModel implements ArgumentInterface
     public function getSerializedConfig()
     {
         return $this->serializer->serialize($this->getConfig());
+    }
+
+    /**
+     * Get show_tooltip option saved in admin
+     *
+     * @return bool
+     */
+    public function getShowTooltip()
+    {
+        return $this->helper->getShowTooltip();
+    }
+
+    /**
+     * Get override_label option saved in admin
+     *
+     * @return bool
+     */
+    public function getOverrideLabel()
+    {
+        return $this->helper->getOverrideLabel();
+    }
+
+    /**
+     * Get field_label option saved in admin
+     *
+     * @return string
+     */
+    public function getCustomLabel()
+    {
+        return $this->helper->getCustomLabel();
+    }
+
+    /**
+     * Get magento version
+     *
+     * @return string
+     */
+    public function getMagentoVersion()
+    {
+        return $this->helper->getMagentoVersion();
+    }
+
+    /**
+     * Get autosuggest_focus option saved in admin
+     *
+     * @return bool
+     */
+    public function getAutosuggestFocus()
+    {
+        return $this->helper->getAutosuggestFocus();
     }
 }

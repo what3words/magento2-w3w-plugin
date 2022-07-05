@@ -14,7 +14,6 @@ use Magento\Checkout\Block\Checkout\LayoutProcessorInterface;
 use What3Words\What3Words\Helper\Config;
 
 /**
- * Class LayoutProcessor
  * Used to add w3w custom attribute to checkout shipping address
  */
 class LayoutProcessor implements LayoutProcessorInterface
@@ -25,14 +24,18 @@ class LayoutProcessor implements LayoutProcessorInterface
      */
     private $helperConfig;
 
+    /**
+     * @param Config $helperConfig
+     */
     public function __construct(
         Config $helperConfig
-    )
-    {
+    ) {
         $this->helperConfig = $helperConfig;
     }
 
     /**
+     * Checkout shipping custom attribute config
+     *
      * @param $result
      * @return mixed Checkout Layout with custom w3w attribute
      */
@@ -59,9 +62,10 @@ class LayoutProcessor implements LayoutProcessorInterface
     }
 
     /**
+     * Update checkout layout dependent on admin setting
+     *
      * @param array $result
-     * @return array|mixed Update checkout layout dependent on admin
-     * setting ( we either show the custom what3words attribute or simply remove it from layout )
+     * @return array|mixed
      */
     public function process($result)
     {
@@ -85,6 +89,7 @@ class LayoutProcessor implements LayoutProcessorInterface
 
     /**
      * Get defined fields
+     *
      * @param $scope
      * @param $addressType
      * @return array
@@ -102,13 +107,24 @@ class LayoutProcessor implements LayoutProcessorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getField($attributeCode, $scope)
     {
         $description = 'By entering your 3 word address you make it much
             easier for our delivery partners to find you first time.
     To discover your 3 word address, visit <a href="https://what3words.com" target="_blank">what3words.com</a>';
+        $tooltipConfig = false;
+        if ($this->helperConfig->getShowTooltip()) {
+            $tooltipConfig = [
+                'description' => __($description)
+            ];
+        }
+        $label = __('what3words address');
+        if ($this->helperConfig->getOverrideLabel()) {
+            $label = $this->helperConfig->getCustomLabel();
+        }
+
         $field = [
             'component' => 'What3Words_What3Words/js/component/w3wAutosuggest',
             'config' => [
@@ -117,13 +133,10 @@ class LayoutProcessor implements LayoutProcessorInterface
                 'elementTmpl' => 'What3Words_What3Words/form/element/input',
                 'placeholder' => $this->helperConfig->getPlaceholder(),
                 'tooltipTpl' => 'What3Words_What3Words/form/element/helper/tooltip',
-                'tooltip' => [
-                    'description' => __($description),
-                ],
-
+                'tooltip' => $tooltipConfig,
             ],
             'dataScope' => $scope . '.' . $attributeCode,
-            'additionalClasses' => 'w3w-checkout-field',
+            'additionalClasses' => 'w3w-checkout-field input-field',
             'sortOrder' => '500',
             'visible' => true,
             'provider' => 'checkoutProvider',
@@ -131,36 +144,15 @@ class LayoutProcessor implements LayoutProcessorInterface
                 'validate-w3w' => true
             ],
             'options' => [],
-            'label' => __('what3words address')
-        ];
-
-        return $field;
-    }
-
-    public function getHiddenField($attributeCode, $scope)
-    {
-        $field = [
-            'component' => 'Magento_Ui/js/form/element/abstract',
-            'config' => [
-                'customScope' => $scope,
-                'customEntry' => null,
-                'template' => 'ui/form/field',
-                'elementTmpl' => 'ui/form/element/input',
-            ],
-            'dataScope' => $scope . '.' . $attributeCode,
-            'additionalClasses' => 'w3w-hidden-field',
-            'sortOrder' => '510',
-            'visible' => true,
-            'provider' => 'checkoutProvider',
-            'validation' => '',
-            'options' => [],
-            'label' => ''
+            'label' => $label
         ];
 
         return $field;
     }
 
     /**
+     * Get additional fields
+     *
      * @param string $addressType
      * @return array
      */
