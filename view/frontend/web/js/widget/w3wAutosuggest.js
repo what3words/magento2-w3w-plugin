@@ -14,23 +14,28 @@ define([
             var inputParent = document.getElementById("autosuggest-w3w"),
                 input = inputParent.querySelector('.what3words-input'),
                 customData = window.w3wConfig,
-                hiddenInput = $('input.what3words-autosuggest'),
-                country = $('[name="country_id"] option:selected').val();
+                hiddenInput = $('input.what3words-autosuggest');
+                $(document).on('focus', '.what3words-autosuggest', function () {
+                    var country = $('[name="country_id"] option:selected').val();
 
-            if (customData.clipping === 'clip-to-circle') {
-                inputParent.setAttribute('clip-to-circle', customData.circle_data);
-            } else if (customData.clipping === 'clip-to-polygon') {
-                inputParent.setAttribute('clip-to-polygon', customData.polygon_data);
-            } else if (customData.clipping === 'clip-to-bounding-box') {
-                inputParent.setAttribute('clip-to-bounding-box', customData.box_data);
-            } else if (customData.clipping === 'clip-to-country' && typeof customData.country_iso !== 'undefined') {
-                inputParent.setAttribute('clip-to-country', customData.country_iso);
-            } else {
-                inputParent.setAttribute('clip-to-country', country);
-            }
-            if (customData.save_coordinates === '1') {
-                inputParent.setAttribute('return-coordinates', 'true');
-            }
+                    if (customData.clipping === 'clip_to_circle') {
+                        inputParent.removeAttribute('clip_to_country');
+                        inputParent.setAttribute('clip_to_circle', customData.circle_data);
+                    } else if (customData.clipping === 'clip_to_polygon') {
+                        inputParent.removeAttribute('clip_to_country');
+                        inputParent.setAttribute('clip_to_polygon', customData.polygon_data);
+                    } else if (customData.clipping === 'clip_to_bounding_box') {
+                        inputParent.removeAttribute('clip_to_country');
+                        inputParent.setAttribute('clip_to_bounding_box', customData.box_data);
+                    } else if (customData.clipping === 'clip_to_country' && typeof customData.country_iso !== 'undefined') {
+                        inputParent.setAttribute('clip_to_country', customData.country_iso);
+                    } else {
+                        inputParent.setAttribute('clip_to_country', country);
+                    }
+                    if (customData.save_coordinates === '1') {
+                        inputParent.setAttribute('return_coordinates', 'true');
+                    }
+                })
 
             if (customData.autosuggest_focus === '1') {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -38,22 +43,19 @@ define([
                 });
             }
 
-            inputParent.addEventListener("select", (value) => {
-                if (value.detail !== hiddenInput.val()) {
-                    hiddenInput.attr('value', value.detail);
-                    hiddenInput.val(value.detail);
-                    hiddenInput.keyup();
+            inputParent.addEventListener("coordinates_changed", function (e) {
+                if (customData.save_coordinates === '1') {
+                    if (customData.save_coordinates === '1') {
+                        var coords = e.detail.coordinates.lat + ',' + e.detail.coordinates.lng;
+                        $('input[name*=w3w_coordinates]').val(coords);
+                    }
                 }
-
-                if (value.detail) {
-                    if (customData.save_coordinates === '1' || customData.save_nearest === '1') {
-                        if (customData.save_coordinates === '1') {
-                            var coords = value.target.coordinatesLng + ' ,' + value.target.coordinatesLat;
-                            $('input[name*=w3w_coordinates]').val(coords);
-                        }
-                        if (customData.save_nearest === '1') {
-                            $('input[name*=w3w_nearest]').val(value.target.nearestPlace);
-                        }
+            })
+            inputParent.addEventListener("selected_suggestion", function (e) {
+                if (customData.save_nearest === '1') {
+                    if (customData.save_nearest === '1') {
+                        var nearestPlace =  e.detail.suggestion.nearestPlace;
+                        $('input[name*=w3w_nearest]').val(nearestPlace);
                     }
                 }
             });

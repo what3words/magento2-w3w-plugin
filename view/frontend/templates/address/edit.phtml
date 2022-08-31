@@ -160,6 +160,7 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
         </div>
         <?php $apiKey = $viewModel->getApiKey();
             $tooltipClass = $viewModel->getShowTooltip() ? '_with-tooltip' : '';
+            $w3wAddress = $block->escapeHtmlAttr($block->getAddress()->getCustomAttribute('w3w') ? $block->getAddress()->getCustomAttribute('w3w')->getValue() : '');
             $fieldLabel = $viewModel->getOverrideLabel() ? $viewModel->getCustomLabel() : $block->getAttributeData()->getFrontendLabel('w3w');
         if (isset($apiKey)) { ?>
             <div class="field w3w">
@@ -167,7 +168,6 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                     <span><?= /* @noEscape */ $fieldLabel ?></span>
                 </label>
                 <div class="control <?= /** @noEscape  */ $tooltipClass;?>">
-
                     <div class="input-wrap-w3w">
                         <what3words-autosuggest
                             headers='{"X-W3W-Plugin": "what3words-Magento/<?=  /* @noEscape */ $viewModel->getConfig()['w3w_version'];?> ({Magento_version: <?= /* @noEscape */ $viewModel->getMagentoVersion();?> , Location: Account})"}'
@@ -180,30 +180,30 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                                 name="w3w"
                                 id="what3words"
                                 data-mage-init='{"w3wAutocomplete":{}}'
-                                value="<?= /* @noEscape */ $block->getAddress()->getCustomAttribute('w3w')->getValue(); ?>"
+                                value="<?= /* @noEscape */ $w3wAddress; ?>"
                                 title="<?= /* @noEscape */ $fieldLabel ?>"
                             optional
                             />
                         </what3words-autosuggest>
-                        <?php if ($viewModel->getShowTooltip()): ?>
-                            <div class="field-tooltip toggle">
-                                <span id="tooltip-label" class="label">Tooltip</span>
-                                <span id="tooltip-w3w"
-                                      class="tooltip-toggle action-help"
-                                      tabindex="0"
-                                      data-toggle="dropdown"
+
+                    </div>
+
+                    <?php if ($viewModel->getShowTooltip()): ?>
+                        <div class="field-tooltip toggle example-tooltip-left">
+                                <span id="tooltip-label" class="label"><span>Tooltip</span></span>
+                                <span id="tooltip-w3w" class="field-tooltip-action" tabindex="0" data-toggle="dropdown"
                                       data-bind="mageInit: {'dropdown':{'activeClass': '_active', 'parent': '.field-tooltip.toggle'}}"
-                                      aria-labelledby="tooltip-label">
-                                </span>
-                                <div class="tooltip-content" data-target="dropdown">
+                                      aria-labelledby="tooltip-label" aria-haspopup="true" aria-expanded="false" role="button"></span>
+                                <div class="field-tooltip-content" data-target="dropdown"
+                                     aria-hidden="true">
                                     <?= /* @noEscape */ __('By entering your 3 word address you make it much
-                                    easier for our delivery partners to find you first time.
-                                    To discover your 3 word address, visit
-                                    <a href="https://what3words.com" target="_blank">what3words.com</a>') ?>
+                                            easier for our delivery partners to find you first time.
+                                            To discover your 3 word address, visit
+                                            <a href="https://what3words.com" target="_blank">what3words.com</a>') ?>
                                 </div>
                             </div>
-                        <?php endif; ?>
-                    </div>
+                    <?php endif; ?>
+
                     <div class="hidden-inputs">
                         <?php
                         $w3wNearest = $block->escapeHtmlAttr($block->getAddress()->getCustomAttribute('w3w_nearest') ? $block->getAddress()->getCustomAttribute('w3w_nearest')->getValue() : '');

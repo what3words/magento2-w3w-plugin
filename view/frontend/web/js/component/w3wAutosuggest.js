@@ -16,7 +16,6 @@ define([
 
             var inputParent = document.getElementById("autosuggest-w3w"),
                 customData = window.w3wConfig,
-                hiddenInput = $('input.what3words-autosuggest'),
                 quoteAddress = quote.shippingAddress(),
                 checkoutData = customerData.get('checkout-data')(),
                 headers = '{"X-W3W-Plugin": "what3words-Magento/'+ customData.w3w_version +' ({Magento_version:'+ customData.magento_version +' , Location: Checkout})"}';
@@ -25,19 +24,22 @@ define([
 
             $(document).on('focus', '.what3words-autosuggest', function () {
                 var country = $('[name="country_id"] option:selected').val();
-                if (customData.clipping === 'clip-to-circle') {
-                    inputParent.setAttribute('clip-to-circle', customData.circle_data);
-                } else if (customData.clipping === 'clip-to-polygon') {
-                    inputParent.setAttribute('clip-to-polygon', customData.polygon_data);
-                } else if (customData.clipping === 'clip-to-bounding-box') {
-                    inputParent.setAttribute('clip-to-bounding-box', customData.box_data);
-                } else if (customData.clipping === 'clip-to-country' && typeof customData.country_iso !== 'undefined') {
-                    inputParent.setAttribute('clip-to-country', customData.country_iso);
+                if (customData.clipping === 'clip_to_circle') {
+                    inputParent.removeAttribute('clip_to_country');
+                    inputParent.setAttribute('clip_to_circle', customData.circle_data);
+                } else if (customData.clipping === 'clip_to_polygon') {
+                    inputParent.removeAttribute('clip_to_country');
+                    inputParent.setAttribute('clip_to_polygon', customData.polygon_data);
+                } else if (customData.clipping === 'clip_to_bounding_box') {
+                    inputParent.removeAttribute('clip_to_country');
+                    inputParent.setAttribute('clip_to_bounding_box', customData.box_data);
+                } else if (customData.clipping === 'clip_to_country' && typeof customData.country_iso !== 'undefined') {
+                    inputParent.setAttribute('clip_to_country', customData.country_iso);
                 } else {
-                    inputParent.setAttribute('clip-to-country', country);
+                    inputParent.setAttribute('clip_to_country', country);
                 }
                 if (customData.save_coordinates === '1') {
-                    inputParent.setAttribute('return-coordinates', 'true');
+                    inputParent.setAttribute('return_coordinates', 'true');
                 }
             });
             if (customData.autosuggest_focus === '1') {
@@ -46,43 +48,50 @@ define([
                 });
             }
 
-            inputParent.addEventListener("select", (value) => {
+            inputParent.addEventListener("coordinates_changed", function (e) {
+                if (customData.save_coordinates === '1') {
+                    var w3wCustom = [];
 
-                if (value.detail !== hiddenInput.val()) {
-                    hiddenInput.val(value.detail);
-                    hiddenInput.attr('value', value.detail);
-                    hiddenInput.keyup();
+                    if (quoteAddress['custom_attributes'] === undefined) {
+                        quoteAddress['custom_attributes'] = {};
+                    }
+
+                    if (quoteAddress['extension_attributes'] === undefined) {
+                        quoteAddress['extension_attributes'] = {};
+                    }
+
+                    if (customData.save_coordinates === '1') {
+                        var coords = e.detail.coordinates.lat + ',' + e.detail.coordinates.lng;
+                        quoteAddress['extension_attributes']['w3w_coordinates'] = coords;
+                        quoteAddress['custom_attributes']['w3w_coordinates'] = coords;
+                        $('input[name*=w3w_coordinates]').val(coords);
+                        checkoutData.shippingAddressFromData.custom_attributes.w3w_coordinates = coords;
+
+                    }
                 }
+            })
+            inputParent.addEventListener("selected_suggestion", function (e) {
+                if (customData.save_nearest === '1') {
+                    var w3wCustom = [];
 
-                if (value.detail) {
-                    if (customData.save_coordinates === '1' || customData.save_nearest === '1') {
-                        var w3wCustom = [];
+                    if (quoteAddress['custom_attributes'] === undefined) {
+                        quoteAddress['custom_attributes'] = {};
+                    }
 
-                        if (quoteAddress['custom_attributes'] === undefined) {
-                            quoteAddress['custom_attributes'] = {};
-                        }
+                    if (quoteAddress['extension_attributes'] === undefined) {
+                        quoteAddress['extension_attributes'] = {};
+                    }
 
-                        if (quoteAddress['extension_attributes'] === undefined) {
-                            quoteAddress['extension_attributes'] = {};
-                        }
-
-                        if (customData.save_coordinates === '1') {
-                            var coords = value.target.coordinatesLng + ' ,' + value.target.coordinatesLat;
-                            quoteAddress['extension_attributes']['w3w_coordinates'] = coords;
-                            quoteAddress['custom_attributes']['w3w_coordinates'] = coords;
-                            $('input[name*=w3w_coordinates]').val(coords);
-                            checkoutData.shippingAddressFromData.custom_attributes.w3w_coordinates = coords;
-
-                        }
-                        if (customData.save_nearest === '1') {
-                            quoteAddress['extension_attributes']['w3w_coordinates'] = value.target.nearestPlace;
-                            quoteAddress['custom_attributes']['w3w_coordinates'] = value.target.nearestPlace;
-                            $('input[name*=w3w_nearest]').val(value.target.nearestPlace);
-                            checkoutData.shippingAddressFromData.custom_attributes.w3w_nearest = value.target.nearestPlace;
-                        }
+                    if (customData.save_nearest === '1') {
+                        var nearestPlace =  e.detail.suggestion.nearestPlace;
+                        quoteAddress['extension_attributes']['w3w_coordinates'] = nearestPlace;
+                        quoteAddress['custom_attributes']['w3w_coordinates'] = nearestPlace;
+                        $('input[name*=w3w_nearest]').val(nearestPlace);
+                        checkoutData.shippingAddressFromData.custom_attributes.w3w_nearest = nearestPlace;
                     }
                 }
             });
+
         }
     };
 
