@@ -60,6 +60,7 @@ class SaveToQuote
         ShippingInformationInterface $addressInformation
     ) {
         $api = $this->helperConfig->getApiKey();
+
         if ($this->helperConfig->getIsEnabled() === '1' && isset($api)) {
             if (!$extAttributes = $addressInformation->getExtensionAttributes()) {
                 return;

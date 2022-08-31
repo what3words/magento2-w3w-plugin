@@ -11,5 +11,15 @@ $viewModel = $block->getViewModel();
     <script>
         window.w3wConfig = <?= /* @noEscape */ $viewModel->getSerializedConfig() ?>;
     </script>
+    <?php if($viewModel->getShowTooltip()){ ?>
+        <style>
+            body .page-wrapper .main what3words-autosuggest
+            > .what3words-autosuggest
+            > .what3words-autosuggest-input-wrapper
+            > .what3words-autosuggest-state {
+                right: 40px;
+            }
+        </style>
+    <?php }; ?>
 <?php } ?>
 

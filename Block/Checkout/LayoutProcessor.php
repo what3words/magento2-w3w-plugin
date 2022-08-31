@@ -46,16 +46,15 @@ class LayoutProcessor implements LayoutProcessorInterface
             ['shipping-address-fieldset'])
         ) {
             $customShippingFields = $this->getFields('shippingAddress.custom_attributes', 'shipping');
-
             $shippingFields = $result['components']['checkout']['children']['steps']['children']
             ['shipping-step']['children']['shippingAddress']['children']
             ['shipping-address-fieldset']['children'];
 
             $shippingFields = array_replace_recursive($shippingFields, $customShippingFields);
-
             $result['components']['checkout']['children']['steps']['children']
             ['shipping-step']['children']['shippingAddress']['children']
             ['shipping-address-fieldset']['children'] = $shippingFields;
+
         }
 
         return $result;
@@ -99,6 +98,8 @@ class LayoutProcessor implements LayoutProcessorInterface
         $fields = [];
         foreach ($this->getAdditionalFields($addressType) as $field) {
             if ($field === 'w3w') {
+                $fields[$field] = $this->getAutocomplete($field, $scope);
+            } else {
                 $fields[$field] = $this->getField($field, $scope);
             }
         }
@@ -109,7 +110,7 @@ class LayoutProcessor implements LayoutProcessorInterface
     /**
      * @inheritDoc
      */
-    public function getField($attributeCode, $scope)
+    public function getAutocomplete($attributeCode, $scope)
     {
         $description = 'By entering your 3 word address you make it much
             easier for our delivery partners to find you first time.
@@ -145,6 +146,29 @@ class LayoutProcessor implements LayoutProcessorInterface
             ],
             'options' => [],
             'label' => $label
+        ];
+
+        return $field;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getField($attributeCode, $scope)
+    {
+        $field =  [
+            'component' => 'Magento_Ui/js/form/element/abstract',
+            'config' => [
+                'customScope' => $scope,
+                'template' => 'ui/form/field',
+                'elementTmpl' => 'ui/form/element/input'
+            ],
+            'dataScope' => $scope . '.' . $attributeCode,
+            'label' => $attributeCode,
+            'provider' => 'checkoutProvider',
+            'sortOrder' => 501,
+            'options' => [],
+            'visible' => false
         ];
 
         return $field;
