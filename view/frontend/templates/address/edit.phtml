@@ -189,19 +189,16 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                     </div>
 
                     <?php if ($viewModel->getShowTooltip()): ?>
-                        <div class="field-tooltip toggle example-tooltip-left">
-                                <span id="tooltip-label" class="label"><span>Tooltip</span></span>
-                                <span id="tooltip-w3w" class="field-tooltip-action" tabindex="0" data-toggle="dropdown"
-                                      data-bind="mageInit: {'dropdown':{'activeClass': '_active', 'parent': '.field-tooltip.toggle'}}"
-                                      aria-labelledby="tooltip-label" aria-haspopup="true" aria-expanded="false" role="button"></span>
-                                <div class="field-tooltip-content" data-target="dropdown"
-                                     aria-hidden="true">
+                        <div class="field-tooltip toggle w3w-tooltip">
+                            <div class="tooltip wrapper">
+                                <span class="tooltip toggle field-tooltip-action"></span>
+                                <div class="tooltip content">
                                     <?= /* @noEscape */ __('By entering your 3 word address you make it much
-                                            easier for our delivery partners to find you first time.
-                                            To discover your 3 word address, visit
-                                            <a href="https://what3words.com" target="_blank">what3words.com</a>') ?>
+                                     easier for our delivery partners to find you first time.
+                                     To discover your 3 word address, visit <a href="https://what3words.com" target="_blank">what3words.com</a>'); ?>
                                 </div>
                             </div>
+                        </div>
                     <?php endif; ?>
 
                     <div class="hidden-inputs">
