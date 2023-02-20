@@ -15,7 +15,9 @@ class OrderLoadAfter implements ObserverInterface
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         $order = $observer->getOrder();
-        $attr = $order->getShippingAddress()->getData('w3w');
-        $order->getShippingAddress()->getExtensionAttributes()->setData('w3w', $attr);
+        if($order->getShippingAddress()) {
+            $attr = $order->getShippingAddress()->getData('w3w');
+            $order->getShippingAddress()->getExtensionAttributes()->setData('w3w', $attr);
+        }
     }
 }
