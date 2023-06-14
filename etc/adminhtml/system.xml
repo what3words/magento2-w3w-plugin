@@ -83,6 +83,13 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>This will add a tooltip explainer to the what3words field that is visible at the checkout page/customer account</comment>
                 </field>
+                <field id="tooltip_text" translate="label" type="textarea" sortOrder="25" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Tooltip text</label>
+                    <depends>
+                        <field id="show_tooltip">1</field>
+                    </depends>
+                    <comment>Text to override the default tooltip text ( it supports basic html tags a,span,br )</comment>
+                </field>
                 <field id="override_label" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Add field label</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -99,6 +106,22 @@
                     <label>Focus autosuggest to user location</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>This will ask for user permission to get current location so the restults are closer to the user</comment>
+                </field>
+                <field id="invalid_error_message" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Invalid error message</label>
+                    <comment>Custom error message when there is an invalid error message from the What3Words autosuggest component</comment>
+                </field>
+                <field id="dir_rtl" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Set html dir RTL for the autocomplete component</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set to Yes in case of Right to left languages ( Arabic, Hebrew, Persian, Urdu )</comment>
+                </field>
+                <field id="autocomplete_lang" translate="label" type="text" sortOrder="80" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
+                    <label>Language code</label>
+                    <depends>
+                        <field id="dir_rtl">1</field>
+                    </depends>
+                    <comment>Set desired language code for RTL mode ( ex: AR for Arabic )</comment>
                 </field>
             </group>
         </section>

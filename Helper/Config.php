@@ -20,6 +20,7 @@ use Magento\Framework\App\ProductMetadataInterface;
 class Config extends AbstractHelper
 {
     const PREFIX = 'what3words/';
+    const TOOLTIP_TEXT = 'By entering your 3 word address you make it much<br>easier for our delivery partners to find you first time.<br>To discover your 3 word address, visit <a href="https://what3words.com" target="_blank">what3words.com</a>';
 
     /**
      * Config constructor.
@@ -193,5 +194,45 @@ class Config extends AbstractHelper
     public function getAutosuggestFocus()
     {
         return $this->getConfig('frontend/autosuggest_focus');
+    }
+
+    /**
+     * Get custom invalid error message
+     *
+     * @return string | null
+     */
+    public function getInvalidErrorMessage()
+    {
+        return $this->getConfig('frontend/invalid_error_message');
+    }
+
+    /**
+     * Return the tooltip text if set and Show tooltip is set to Yes
+     *
+     * @return mixed|null
+     */
+    public function getTooltipText()
+    {
+        return $this->getShowTooltip() ? $this->getConfig('frontend/tooltip_text') : __(self::TOOLTIP_TEXT);
+    }
+
+    /**
+     * Get Dir RTL if option
+     *
+     * @return bool
+     */
+    public function getRtlDirection()
+    {
+        return $this->getConfig('frontend/dir_rtl');
+    }
+
+    /**
+     * Return autocomplete Lang if set and RTL dir is set to Yes
+     *
+     * @return mixed|null
+     */
+    public function getAutocompleteLang()
+    {
+        return $this->getConfig('frontend/autocomplete_lang') ?? null;
     }
 }

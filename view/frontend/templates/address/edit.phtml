@@ -161,7 +161,10 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
         <?php $apiKey = $viewModel->getApiKey();
             $tooltipClass = $viewModel->getShowTooltip() ? '_with-tooltip' : '';
             $w3wAddress = $block->escapeHtmlAttr($block->getAddress()->getCustomAttribute('w3w') ? $block->getAddress()->getCustomAttribute('w3w')->getValue() : '');
-            $fieldLabel = $viewModel->getOverrideLabel() ? $viewModel->getCustomLabel() : $block->getAttributeData()->getFrontendLabel('w3w');
+            $fieldLabel = $viewModel->getOverrideLabel() ? $viewModel->getCustomLabel() : __('what3words address');
+            $invalidError = $viewModel->getInvalidMessage() ? 'invalid_address_error_message="'. $viewModel->getInvalidMessage() .'"' : '';
+            $rtlDir = $viewModel->getRtlDir() ? 'dir="rtl"' : '';
+            $autocompleteLang = $viewModel->getLang() ? 'language="'. $viewModel->getLang(). '"' : '';
         if (isset($apiKey)) { ?>
             <div class="field w3w">
                 <label class="label" for="w3w">
@@ -172,7 +175,10 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                         <what3words-autosuggest
                             headers='{"X-W3W-Plugin": "what3words-Magento/<?=  /* @noEscape */ $viewModel->getConfig()['w3w_version'];?> ({Magento_version: <?= /* @noEscape */ $viewModel->getMagentoVersion();?> , Location: Account})"}'
                             id="autosuggest-w3w"  validation="true"
-                            variant="inherit">
+                            variant="inherit"
+                            <?= /* @noEscape */ $invalidError; ?>
+                            <?= /* @noEscape */ $rtlDir; ?>
+                            <?= /* @noEscape */ $autocompleteLang; ?>>
                             <input
                                 class="input-text what3words-autosuggest"
                                 placeholder="<?= /* @noEscape */ $viewModel->getPlaceholder(); ?>"
@@ -180,6 +186,7 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                                 name="w3w"
                                 id="what3words"
                                 data-mage-init='{"w3wAutocomplete":{}}'
+                                <?= /* @noEscape */ $rtlDir; ?>
                                 value="<?= /* @noEscape */ $w3wAddress; ?>"
                                 title="<?= /* @noEscape */ $fieldLabel ?>"
                             optional
@@ -193,9 +200,7 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                             <div class="tooltip wrapper">
                                 <span class="tooltip toggle field-tooltip-action"></span>
                                 <div class="tooltip content">
-                                    <?= /* @noEscape */ __('By entering your 3 word address you make it much
-                                     easier for our delivery partners to find you first time.
-                                     To discover your 3 word address, visit <a href="https://what3words.com" target="_blank">what3words.com</a>'); ?>
+                                    <?= /* @noEscape */ $viewModel->getTooltipText(); ?>
                                 </div>
                             </div>
                         </div>

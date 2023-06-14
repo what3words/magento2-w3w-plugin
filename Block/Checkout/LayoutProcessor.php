@@ -112,13 +112,10 @@ class LayoutProcessor implements LayoutProcessorInterface
      */
     public function getAutocomplete($attributeCode, $scope)
     {
-        $description = 'By entering your 3 word address you make it much
-            easier for our delivery partners to find you first time.
-    To discover your 3 word address, visit <a href="https://what3words.com" target="_blank">what3words.com</a>';
         $tooltipConfig = false;
         if ($this->helperConfig->getShowTooltip()) {
             $tooltipConfig = [
-                'description' => __($description)
+                'description' => $this->helperConfig->getTooltipText()
             ];
         }
         $label = __('what3words address');
@@ -135,6 +132,9 @@ class LayoutProcessor implements LayoutProcessorInterface
                 'placeholder' => $this->helperConfig->getPlaceholder(),
                 'tooltipTpl' => 'What3Words_What3Words/form/element/helper/tooltip',
                 'tooltip' => $tooltipConfig,
+                'lang' => $this->helperConfig->getAutocompleteLang(),
+                'dir' => $this->helperConfig->getRtlDirection(),
+                'invalid_error_message' => $this->helperConfig->getInvalidErrorMessage(),
             ],
             'dataScope' => $scope . '.' . $attributeCode,
             'additionalClasses' => 'w3w-checkout-field input-field',

@@ -4,7 +4,7 @@
     "type": "magento2-module",
     "license": "proprietary",
     "keywords": ["magento", "magento2", "what3words", "what3words address"],
-    "version": "3.0.3",
+    "version": "3.0.4",
     "authors": [
         {
             "name": "Vlad Patru",
@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "magento/framework": "^102.0.0 || ^103.0.0 ",
+        "magento/framework": "^102.0.0 || ^103.0.0",
         "php": "~7.3.0||~7.4.0|| ~8.0"
     },
     "autoload": {

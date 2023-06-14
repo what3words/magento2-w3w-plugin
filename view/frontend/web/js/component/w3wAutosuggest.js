@@ -38,14 +38,21 @@ define([
                 } else {
                     inputParent.setAttribute('clip_to_country', country);
                 }
-                if (customData.save_coordinates === '1') {
-                    inputParent.setAttribute('return_coordinates', 'true');
-                }
             });
             if (customData.autosuggest_focus === '1') {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     inputParent.setAttribute('autosuggest_focus', position.coords.latitude + ',' + position.coords.longitude);
                 });
+            }
+            if (customData.lang !== "null") {
+                inputParent.setAttribute('lang', customData.lang);
+            }
+            if (customData.invalid_error_message) {
+                inputParent.setAttribute('invalid_address_error_message', customData.invalid_error_message);
+            }
+
+            if (customData.rtl === '1') {
+                inputParent.setAttribute('dir', 'rtl');
             }
 
             inputParent.addEventListener("coordinates_changed", function (e) {

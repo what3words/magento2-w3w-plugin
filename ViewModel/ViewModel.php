@@ -151,7 +151,11 @@ class ViewModel implements ArgumentInterface
             'override_label' => $this->helper->getOverrideLabel(),
             'custom_label' => $this->helper->getCustomLabel(),
             'magento_version' => $this->helper->getMagentoVersion(),
-            'autosuggest_focus' => $this->helper->getAutosuggestFocus()
+            'autosuggest_focus' => $this->helper->getAutosuggestFocus(),
+            'invalid_error_message' => $this->helper->getInvalidErrorMessage(),
+            'tooltip_text' => $this->helper->getTooltipText(),
+            'rtl' => $this->helper->getRtlDirection(),
+            'lang' => $this->helper->getAutocompleteLang(),
         ];
     }
 
@@ -213,5 +217,45 @@ class ViewModel implements ArgumentInterface
     public function getAutosuggestFocus()
     {
         return $this->helper->getAutosuggestFocus();
+    }
+
+    /**
+     * Return the Invalid error message
+     *
+     * @return string|null
+     */
+    public function getInvalidMessage()
+    {
+        return $this->helper->getInvalidErrorMessage();
+    }
+
+    /**
+     * Return RTL option if set
+     *
+     * @return bool
+     */
+    public function getRtlDir()
+    {
+        return $this->helper->getRtlDirection();
+    }
+
+    /**
+     * Return Autocomplete Lang if set
+     *
+     * @return mixed|null
+     */
+    public function getLang()
+    {
+        return $this->helper->getAutocompleteLang();
+    }
+
+    /**
+     * Get Tooltip Text
+     *
+     * @return mixed|null
+     */
+    public function getTooltipText()
+    {
+        return $this->helper->getTooltipText();
     }
 }
