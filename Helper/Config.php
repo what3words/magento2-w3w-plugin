@@ -12,6 +12,8 @@ namespace What3Words\What3Words\Helper;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\App\ProductMetadataInterface;
+use \Magento\Store\Model\StoreManagerInterface;
+
 
 /**
  * Class Config
@@ -20,8 +22,6 @@ use Magento\Framework\App\ProductMetadataInterface;
 class Config extends AbstractHelper
 {
     const PREFIX = 'what3words/';
-    const TOOLTIP_TEXT = 'By entering your 3 word address you make it much<br>easier for our delivery partners to find you first time.<br>To discover your 3 word address, visit <a href="https://what3words.com" target="_blank">what3words.com</a>';
-
     /**
      * Config constructor.
      * @param Context $context
@@ -29,10 +29,12 @@ class Config extends AbstractHelper
      */
     public function __construct(
         Context $context,
-        ProductMetadataInterface $productMetadata
+        ProductMetadataInterface $productMetadata,
+        StoreManagerInterface $storeManager
     ) {
         parent::__construct($context);
         $this->productMetadata = $productMetadata;
+        $this->storeManager = $storeManager;
     }
 
     /**
@@ -213,7 +215,9 @@ class Config extends AbstractHelper
      */
     public function getTooltipText()
     {
-        return $this->getShowTooltip() ? $this->getConfig('frontend/tooltip_text') : __(self::TOOLTIP_TEXT);
+        $defaultMessage = 'what3words addresses help our delivery partners find you first time. Find yours at <a href="%1" target="_blank">what3words.com</a>';
+        $partner = parse_url($this->storeManager->getStore()->getBaseUrl(), PHP_URL_HOST);
+        return $this->getShowTooltip() && $this->getConfig('frontend/tooltip_text') ? $this->getConfig('frontend/tooltip_text') : __($defaultMessage, 'https://delivery.w3w.co/?partner='. $partner);
     }
 
     /**
