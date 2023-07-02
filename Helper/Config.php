@@ -22,6 +22,7 @@ use \Magento\Store\Model\StoreManagerInterface;
 class Config extends AbstractHelper
 {
     const PREFIX = 'what3words/';
+    const SCOPE_TYPE_STORE = 'store';
     /**
      * Config constructor.
      * @param Context $context
@@ -45,7 +46,7 @@ class Config extends AbstractHelper
      */
     public function getConfig($area)
     {
-        return $this->scopeConfig->getValue(self::PREFIX . $area);
+        return $this->scopeConfig->getValue(self::PREFIX . $area, self::SCOPE_TYPE_STORE);
     }
 
     /**
