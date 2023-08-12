@@ -21,6 +21,9 @@ define([
                 headers = '{"X-W3W-Plugin": "what3words-Magento/'+ customData.w3w_version +' ({Magento_version:'+ customData.magento_version +' , Location: Checkout})"}';
 
             inputParent.setAttribute('headers', headers);
+            if (customData.api_key) {
+                inputParent.setAttribute('api_key', customData.api_key);
+            }
 
             $(document).on('focus', '.what3words-autosuggest', function () {
                 var country = $('[name="country_id"] option:selected').val();

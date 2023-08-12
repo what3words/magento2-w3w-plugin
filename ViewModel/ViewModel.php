@@ -139,6 +139,7 @@ class ViewModel implements ArgumentInterface
     public function getConfig()
     {
         return [
+            'api_key' => $this->helper->getApiKey(),
             'clipping' => 'clip-to-' . $this->helper->getClipping(),
             'save_coordinates' => $this->helper->getCoordinates(),
             'save_nearest' => $this->helper->getNearest(),

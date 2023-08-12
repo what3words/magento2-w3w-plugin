@@ -173,6 +173,7 @@ $_fax = $block->getLayout()->createBlock(Fax::class) ?>
                 <div class="control <?= /** @noEscape  */ $tooltipClass;?>">
                     <div class="input-wrap-w3w">
                         <what3words-autosuggest
+                            api_key="<?= /** @noEscape  */ $viewModel->getApiKey(); ?>"
                             headers='{"X-W3W-Plugin": "what3words-Magento/<?=  /* @noEscape */ $viewModel->getConfig()['w3w_version'];?> ({Magento_version: <?= /* @noEscape */ $viewModel->getMagentoVersion();?> , Location: Account})"}'
                             id="autosuggest-w3w"  validation="true"
                             variant="inherit"
