@@ -13,8 +13,7 @@ define([
     ko.bindingHandlers.autoComplete = {
 
         init: function () {
-
-            var inputParent = document.getElementById("autosuggest-w3w"),
+            const inputParent = document.getElementById("autosuggest-w3w"),
                 customData = window.w3wConfig,
                 quoteAddress = quote.shippingAddress(),
                 checkoutData = customerData.get('checkout-data')(),
@@ -26,7 +25,7 @@ define([
             }
 
             $(document).on('focus', '.what3words-autosuggest', function () {
-                var country = $('[name="country_id"] option:selected').val();
+                const country = $('[name="country_id"] option:selected').val();
                 if (customData.clipping === 'clip_to_circle') {
                     inputParent.removeAttribute('clip_to_country');
                     inputParent.setAttribute('clip_to_circle', customData.circle_data);
@@ -60,8 +59,6 @@ define([
 
             inputParent.addEventListener("coordinates_changed", function (e) {
                 if (customData.save_coordinates === '1') {
-                    var w3wCustom = [];
-
                     if (quoteAddress['custom_attributes'] === undefined) {
                         quoteAddress['custom_attributes'] = {};
                     }
@@ -71,7 +68,7 @@ define([
                     }
 
                     if (customData.save_coordinates === '1') {
-                        var coords = e.detail.coordinates.lat + ',' + e.detail.coordinates.lng;
+                        const coords = e.detail.coordinates.lat + ',' + e.detail.coordinates.lng;
                         quoteAddress['extension_attributes']['w3w_coordinates'] = coords;
                         quoteAddress['custom_attributes']['w3w_coordinates'] = coords;
                         $('input[name*=w3w_coordinates]').val(coords);
@@ -82,8 +79,6 @@ define([
             })
             inputParent.addEventListener("selected_suggestion", function (e) {
                 if (customData.save_nearest === '1') {
-                    var w3wCustom = [];
-
                     if (quoteAddress['custom_attributes'] === undefined) {
                         quoteAddress['custom_attributes'] = {};
                     }
@@ -93,7 +88,7 @@ define([
                     }
 
                     if (customData.save_nearest === '1') {
-                        var nearestPlace =  e.detail.suggestion.nearestPlace;
+                        const nearestPlace =  e.detail.suggestion.nearestPlace;
                         quoteAddress['extension_attributes']['w3w_coordinates'] = nearestPlace;
                         quoteAddress['custom_attributes']['w3w_coordinates'] = nearestPlace;
                         $('input[name*=w3w_nearest]').val(nearestPlace);
