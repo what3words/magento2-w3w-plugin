@@ -23,7 +23,6 @@ define([
           customData.magento_version +
           ', Location: Checkout})"}';
 
-      window.temporary = checkoutData;
       inputParent.setAttribute("headers", headers);
       if (customData.api_key) {
         inputParent.setAttribute("api_key", customData.api_key);
