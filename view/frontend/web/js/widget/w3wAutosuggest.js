@@ -33,7 +33,7 @@ define([
                         inputParent.setAttribute('clip_to_country', country);
                     }
                     if (customData.save_coordinates === '1') {
-                        inputParent.setAttribute('return_coordinates', 'true');
+                        inputParent.setAttribute('return_coordinates', true);
                     }
                 })
 
