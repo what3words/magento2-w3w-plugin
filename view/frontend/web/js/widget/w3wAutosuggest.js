@@ -11,12 +11,10 @@ define([
 
         /** @inheritdoc */
         _create: function () {
-            var inputParent = document.getElementById("autosuggest-w3w"),
-                input = inputParent.querySelector('.what3words-input'),
-                customData = window.w3wConfig,
-                hiddenInput = $('input.what3words-autosuggest');
+            const inputParent = document.getElementById("autosuggest-w3w"),
+                customData = window.w3wConfig;
                 $(document).on('focus', '.what3words-autosuggest', function () {
-                    var country = $('[name="country_id"] option:selected').val();
+                    const country = $('[name="country_id"] option:selected').val();
 
                     if (customData.clipping === 'clip_to_circle') {
                         inputParent.removeAttribute('clip_to_country');
@@ -46,7 +44,7 @@ define([
             inputParent.addEventListener("coordinates_changed", function (e) {
                 if (customData.save_coordinates === '1') {
                     if (customData.save_coordinates === '1') {
-                        var coords = e.detail.coordinates.lat + ',' + e.detail.coordinates.lng;
+                        const coords = e.detail.coordinates.lat + ',' + e.detail.coordinates.lng;
                         $('input[name*=w3w_coordinates]').val(coords);
                     }
                 }
@@ -54,7 +52,7 @@ define([
             inputParent.addEventListener("selected_suggestion", function (e) {
                 if (customData.save_nearest === '1') {
                     if (customData.save_nearest === '1') {
-                        var nearestPlace =  e.detail.suggestion.nearestPlace;
+                        const nearestPlace =  e.detail.suggestion.nearestPlace;
                         $('input[name*=w3w_nearest]').val(nearestPlace);
                     }
                 }
