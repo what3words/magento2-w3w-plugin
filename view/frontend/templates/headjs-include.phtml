@@ -7,11 +7,11 @@ $viewModel = $block->getViewModel();
 <?php if ($viewModel->getApiKey()) { ?>
     <script
         type="module"
-        src="https://cdn.what3words.com/javascript-components@4.8.0/dist/what3words/what3words.esm.js">
+        src="https://cdn.what3words.com/javascript-components@4.9.0/dist/what3words/what3words.esm.js">
     </script>
     <script
         nomodule
-        src="https://cdn.what3words.com/javascript-components@4.8.0/dist/what3words/what3words.js">
+        src="https://cdn.what3words.com/javascript-components@4.9.0/dist/what3words/what3words.js">
     </script>
     <script>
         window.w3wConfig = <?= /* @noEscape */ $viewModel->getSerializedConfig() ?>;
