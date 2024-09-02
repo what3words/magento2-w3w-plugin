@@ -16,6 +16,6 @@ class SaveCoordinates implements CommentInterface
 {
     public function getCommentText($elementValue)
     {
-        return "NOTE: This feature won't work if you're on a free plan or have exceeded your quota. Check the console and network panel for errors. No coordinates will be saved. Please review our <a href=\"https://accounts.what3words.com/select-plan\">plans</a> for higher allowances.";
+        return "<strong>NOTE:</strong> This feature won't work if you're on a free plan or have exceeded your quota. Check the console and network panel for errors. No coordinates will be saved. Please review our <a href=\"https://accounts.what3words.com/select-plan\">plans</a> for higher allowances."
     }
 }
