@@ -20,6 +20,7 @@
                 <field id="save_coordinates" translate="label" type="select" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Save coordinates</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>NOTE: This feature won't work if you're on a free plan or have exceeded your quota. Check the console and network panel for errors. No coordinates will be saved. Please review our <a href="https://accounts.what3words.com/select-plan">plans</a> for higher allowances.</comment>
                 </field>
                 <field id="save_nearest" translate="label" type="select" sortOrder="30" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Save nearest place</label>
