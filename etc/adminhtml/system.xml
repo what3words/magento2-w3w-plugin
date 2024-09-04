@@ -20,6 +20,9 @@
                 <field id="save_coordinates" translate="label" type="select" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Save coordinates</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <model>What3Words\What3Words\Model\Config\Comment\SaveCoordinates</model>
+                    </comment>
                 </field>
                 <field id="save_nearest" translate="label" type="select" sortOrder="30" showInDefault="1" showInStore="1" showInWebsite="1" canRestore="1">
                     <label>Save nearest place</label>
