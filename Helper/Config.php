@@ -23,6 +23,10 @@ class Config extends AbstractHelper
 {
     const PREFIX = 'what3words/';
     const SCOPE_TYPE_STORE = 'store';
+
+    private $productMetadata;
+    private $storeManager;
+
     /**
      * Config constructor.
      * @param Context $context
