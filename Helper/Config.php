@@ -23,10 +23,22 @@ class Config extends AbstractHelper
 {
     const PREFIX = 'what3words/';
     const SCOPE_TYPE_STORE = 'store';
+
+    /**
+     * @var ProductMetadataInterface
+     */
+    private $productMetadata;
+
+    /**
+     * @var StoreManagerInterface
+     */
+    private $storeManager;
+
     /**
      * Config constructor.
      * @param Context $context
      * @param ProductMetadataInterface $productMetadata
+     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         Context $context,
@@ -218,7 +230,7 @@ class Config extends AbstractHelper
     {
         $defaultMessage = 'what3words addresses help our delivery partners find you first time. Find yours at <a href="%1" target="_blank">what3words.com</a>';
         $partner = parse_url($this->storeManager->getStore()->getBaseUrl(), PHP_URL_HOST);
-        return $this->getShowTooltip() && $this->getConfig('frontend/tooltip_text') ? $this->getConfig('frontend/tooltip_text') : __($defaultMessage, 'https://delivery.w3w.co/?partner='. $partner);
+        return $this->getShowTooltip() && $this->getConfig('frontend/tooltip_text') ? $this->getConfig('frontend/tooltip_text') : __($defaultMessage, 'https://delivery.w3w.co/?partner=' . $partner);
     }
 
     /**
